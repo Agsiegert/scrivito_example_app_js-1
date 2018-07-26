@@ -1,4 +1,4 @@
-import * as Scrivito from "scrivito";
+mport * as Scrivito from "scrivito";
 
 const config = { tenant: process.env.SCRIVITO_TENANT };
 
