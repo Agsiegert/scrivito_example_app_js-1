@@ -6,10 +6,10 @@ switch (origin) {
     origin = 'my-product';
     break;
   case 'https://www.safehomeinspection.com' :
-    origin = 'no-path';
+    origin = 'home';
     break;
   case 'https://homeinspectionlink.com' :
-  	origin = 'about'
+    origin = 'home-inspection-link'
   default:
     origin = 'home';
 }
