@@ -8,7 +8,7 @@ switch (origin) {
   case 'https://www.safehomeinspection.com' :
     origin = 'no-path';
     break;
-  case 'https://homeinspectionlink.com' :
+  case 'http://homeinspectionlink.com' :
   	origin = 'about'
   default:
     origin = 'home';
