@@ -3,13 +3,13 @@ import * as Scrivito from 'scrivito';
 var origin = location.origin;
 switch (origin) {
   case 'https://shi.netlify.com' :
-    'product';
+    origin = 'product';
     break;
   case 'https://www.safehomeinspection.com' :
-    'no-path';
+    origin = 'no-path';
     break;
   default:
-    'about';
+   origin = 'about';
 }
 
 Scrivito.configure({
