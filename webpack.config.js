@@ -52,6 +52,9 @@ module.exports = (env = {}) => {
         uglifyOptions: {
           ie8: false,
           ecma: 5,
+          compress: {
+            inline: true
+          },
         },
       }),
       new ZipPlugin({
