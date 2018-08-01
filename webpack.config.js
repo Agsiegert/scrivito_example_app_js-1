@@ -52,6 +52,9 @@ module.exports = (env = {}) => {
         uglifyOptions: {
           ie8: false,
           ecma: 5,
+          compress: {
+            inline: true, // prevents error when upgrading from uglifyjs-webpack-plugin 1.2.5
+          },
         },
       }),
       new ZipPlugin({
