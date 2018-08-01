@@ -53,7 +53,7 @@ module.exports = (env = {}) => {
           ie8: false,
           ecma: 5,
           compress: {
-            inline: true
+            inline: true,
           },
         },
       }),
