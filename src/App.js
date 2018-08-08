@@ -5,6 +5,7 @@ import ErrorBoundary from './Components/ErrorBoundary';
 import Footer from './Components/Footer';
 import GoogleAnalytics from './Components/GoogleAnalytics';
 import Intercom from './Components/Intercom';
+import Instagram from './Components/Instagram';
 import Navigation from './Components/Navigation';
 import NotFoundErrorPage from './Components/NotFoundErrorPage';
 
@@ -21,6 +22,7 @@ export default function App() {
         <CurrentPageMetaData />
         <GoogleAnalytics />
         <Intercom />
+        <Instagram />
       </div>
     </ErrorBoundary>
   );
