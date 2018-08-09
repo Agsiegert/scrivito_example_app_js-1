@@ -1,5 +1,5 @@
 /*!
- * Bootstrap v3.3.7
+ * Bootstrap v4
  */
 
 /* important variables
@@ -286,6 +286,9 @@ img,
 .margin-bottom {
   margin-bottom: 20px;
 }
+.margin-right {
+  margin-right: 10px;
+}
 .neg-margin {
   margin-right: -15px;
   margin-left: -15px;
@@ -463,6 +466,53 @@ $easing: cubic-bezier(0.7, 0, 0, 0.7);
   }
 }
 
+/* titles of modules
+=================================================================== */
+
+.title-bgc {
+  background-color: $secondary;
+  padding: 3rem;
+  h1 {
+    color: #fff;
+    margin-bottom: 0;
+  }
+  span {
+    color: #fff;
+  }
+}
+
+.details-title-box {
+  margin: 1rem 0;
+  i.fa {
+    width: 20px;
+    margin-right: 10px;
+    font-size: 15px;
+    text-align: center;
+    color: #fff;
+  }
+  .font-weight-bold {
+    margin-right: 0.25rem;
+  }
+  h2, div {
+    color: #fff;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  .location-title {
+    margin-top: 10px;
+    h2 {
+      margin-bottom: 0;
+      text-transform: uppercase;
+    }
+    .event-info {
+      margin-left: 1.9rem;
+    }
+  }
+}
+
+
+
 /* sections
 =================================================================== */
 
@@ -488,7 +538,7 @@ $easing: cubic-bezier(0.7, 0, 0, 0.7);
 .bg-greywhite,
 .bg-white {
   &.medium-height {
-    min-height: 450px;
+    min-height: 300px;
   }
   &.min-height {
     min-height: 150px;
@@ -564,7 +614,8 @@ $easing: cubic-bezier(0.7, 0, 0, 0.7);
   .h5,
   .h6,
   .table-features,
-  .card.card-theme {
+  .card.card-theme,
+  .edit-mode-link {
     color: #fff !important;
   }
 }
@@ -1022,6 +1073,7 @@ section.navbar-fixed { padding-top: 80px; }
     font-size: 24px;
     text-transform: none;
     border-top: 1px solid #eee;
+    text-align: left;
   }
   .nav > li:first-child > a {
     border: 0;
