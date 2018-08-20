@@ -355,6 +355,10 @@ small,
   margin-bottom: 20px;
 }
 
+.container-initial {
+  position: initial !important;
+}
+
 /* button adaoptions
 =================================================================== */
 
@@ -2749,6 +2753,17 @@ _:-ms-fullscreen,
     max-height: 26px;
   }
 }
+
+/* content iframes properties
+=================================================================== */
+.fullsize-iframe {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+}
+
 
 /* section google map
 =================================================================== */
