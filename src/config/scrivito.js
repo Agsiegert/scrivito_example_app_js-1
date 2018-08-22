@@ -7,7 +7,7 @@ function rootObj() {
       rootPath = '/my-product';
       break;
     case 'www.safehomeinspection.com' :
-      rootPath = '/no-path';
+      rootPath = '/about';
       break;
     case 'homeinspectionlink.com' :
       rootPath = '/';
