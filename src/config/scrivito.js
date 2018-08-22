@@ -4,7 +4,7 @@ function rootObj() {
   var rootPath = '/';
   switch (location.hostname) {
     case 'shi.netlify.com' :
-      rootPath = '/my-product';
+      rootPath = '/product';
       break;
     case 'www.safehomeinspection.com' :
       rootPath = '/about';
