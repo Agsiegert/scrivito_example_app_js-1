@@ -1,6 +1,6 @@
 import * as Scrivito from "scrivito";
 
-function rootObj {
+function rootObj() {
   var rootPath = '/';
   switch (location.hostname) {
     case 'shi.netlify.com' :
