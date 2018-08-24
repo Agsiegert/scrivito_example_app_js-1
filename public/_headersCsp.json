@@ -1,7 +1,11 @@
 {
   "base-uri": "'none'",
   "default-src": ["'self'", "data:", "https:", "wss:"],
-  "style-src": ["'self'", "data:", "https:", "wss:", "'unsafe-inline'"],
+  "style-src": [
+    "'self",
+    " https://assets.scrivito.com/",
+    "'sha256-5ieGubxPx4XvxN9UkBcwNn4s5WWNXqo4tINEjUfCm48='"
+  ],
   "script-src": [
     "'self'",
     "https://api.scrivito.com",
