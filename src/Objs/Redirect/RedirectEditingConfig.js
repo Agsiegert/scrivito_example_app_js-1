@@ -6,6 +6,9 @@ Scrivito.provideEditingConfig("Redirect", {
   thumbnail: redirectObjIcon,
   hideInSelectionDialogs: false,
   attributes: {
+    title: {
+      title: "Title",
+    }
     link: {
       title: "Link",
     },
