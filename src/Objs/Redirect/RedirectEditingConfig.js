@@ -18,7 +18,7 @@ Scrivito.provideEditingConfig("Redirect", {
       values: [{ value: "yes", title: "Yes" }, { value: "no", title: "No" }],
     },
   },
-  properties: ["link", "openInUi"],
+  properties: ["title", "link", "openInUi"],
   initialContent: {
     openInUi: "no",
   },
