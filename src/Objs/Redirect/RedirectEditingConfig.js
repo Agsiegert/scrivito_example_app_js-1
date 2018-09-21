@@ -8,7 +8,7 @@ Scrivito.provideEditingConfig("Redirect", {
   attributes: {
     title: {
       title: "Title",
-    }
+    },
     link: {
       title: "Link",
     },
