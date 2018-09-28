@@ -28,7 +28,7 @@ class RedirectComponent extends React.Component {
 
   render() {
     const link =
-      this.props.page.get("link")];
+      this.props.page.get("link");
 
     if (!link) {
       return (
