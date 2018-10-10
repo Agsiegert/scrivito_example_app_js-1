@@ -8,6 +8,7 @@ Scrivito.provideEditingConfig("Redirect", {
   attributes: {
     title: {
       title: "Title",
+      description: "Limit to 55 characters.",
     },
     link: {
       title: "Link",
