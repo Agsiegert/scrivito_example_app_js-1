@@ -1,11 +1,13 @@
-import * as React from 'react';
-import * as Scrivito from 'scrivito';
-import { Element as ScrollElement } from 'react-scroll';
-import currentPageNavigationOptions from './Navigation/currentPageNavigationOptions';
-import FullNavigation from './Navigation/FullNavigation';
-import LandingPageNavigation from './Navigation/LandingPageNavigation';
-import NavigationSection from './Navigation/NavigationSection';
-import ScrollToNextSectionLink from './Navigation/ScrollToNextSectionLink';
+import * as React from "react";
+import * as Scrivito from "scrivito";
+import { Element as ScrollElement } from "react-scroll";
+import currentPageNavigationOptions from "./Navigation/currentPageNavigationOptions";
+import FullNavigation from "./Navigation/FullNavigation";
+import LandingPageNavigation from "./Navigation/LandingPageNavigation";
+import NavigationSection from "./Navigation/NavigationSection";
+import ScrollToNextSectionLink from "./Navigation/ScrollToNextSectionLink";
+import isVideoObj from "../utils/isVideoObj";
+import urlFromBinary from "../utils/urlFromBinary";
 
 function ActualNavigation({
   isLandingPage,
@@ -30,6 +32,23 @@ function ActualNavigation({
   );
 }
 
+function BackgroundVideo({ videoUrl }) {
+  if (!videoUrl) {
+    return null;
+  }
+
+  return (
+    <video
+      className="video-full-screen"
+      src={videoUrl}
+      playsInline
+      autoPlay
+      muted
+      loop
+    />
+  );
+}
+
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
@@ -43,11 +62,11 @@ class Navigation extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener("scroll", this.handleScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener("scroll", this.handleScroll);
   }
 
   handleScroll(event) {
@@ -74,43 +93,61 @@ class Navigation extends React.Component {
       isLandingPage,
     } = currentPageNavigationOptions();
 
-    const topSectionClassNames = ['navbar-fixed'];
+    const topSectionClassNames = ["navbar-fixed"];
     if (this.state.scrolled) {
-      topSectionClassNames.push('scrolled');
+      topSectionClassNames.push("scrolled");
     }
 
-    if (navigationStyle === 'transparentDark') {
-      topSectionClassNames.push('bg-dark-image');
+    if (navigationStyle === "transparentDark") {
+      topSectionClassNames.push("bg-dark-image");
     } else {
-      topSectionClassNames.push('bg-white', 'nav-only');
+      topSectionClassNames.push("bg-white", "nav-only");
     }
 
     const bootstrapNavbarClassNames = [];
     if (this.state.showSearch) {
-      bootstrapNavbarClassNames.push('show-search');
+      bootstrapNavbarClassNames.push("show-search");
     }
-    if (navigationStyle === 'transparentDark') {
-      bootstrapNavbarClassNames.push('navbar-transparent');
+    if (navigationStyle === "transparentDark") {
+      bootstrapNavbarClassNames.push("navbar-transparent");
+    }
+
+    let videoUrl = "";
+    if (isVideoObj(backgroundImage)) {
+      videoUrl = urlFromBinary(backgroundImage);
     }
 
     const topSectionStyle = {};
-    if (navigationStyle === 'transparentDark') {
+    if (navigationStyle === "transparentDark") {
       if (backgroundImage) {
         if (useGradient) {
           topSectionStyle.background = [
             {
               image:
-                'radial-gradient(ellipse at center, rgba(61,65,66,.5) 0%,' +
-                ' rgba(61,65,66,1) 90%)',
+                "radial-gradient(ellipse at center, rgba(61,65,66,.5) 0%," +
+                " rgba(61,65,66,1) 90%)",
             },
-            { image: 'linear-gradient(to bottom, rgba(61,65,66,0) 0%, rgba(61,65,66,1) 90%)' },
-            { image: backgroundImage },
+            {
+              image:
+                "linear-gradient(to bottom, rgba(61,65,66,0) 0%, rgba(61,65,66,1) 90%)",
+            },
           ];
+          if (!isVideoObj(backgroundImage)) {
+            topSectionStyle.background.push({
+              image: backgroundImage,
+              position: "bottom",
+            });
+          }
         } else {
           topSectionStyle.background = [
-            { image: 'linear-gradient(rgba(46, 53, 60, 0.7), rgba(46, 53, 60, 0.7))' },
-            { image: backgroundImage },
+            {
+              image:
+                "linear-gradient(rgba(46, 53, 60, 0.7), rgba(46, 53, 60, 0.7))",
+            },
           ];
+          if (!isVideoObj(backgroundImage)) {
+            topSectionStyle.background.push({ image: backgroundImage });
+          }
         }
       }
     }
@@ -123,9 +160,10 @@ class Navigation extends React.Component {
       <React.Fragment>
         <Scrivito.BackgroundImageTag
           tag="section"
-          className={topSectionClassNames.join(' ')}
+          className={topSectionClassNames.join(" ")}
           style={topSectionStyle}
         >
+          <BackgroundVideo videoUrl={videoUrl} />
           <ActualNavigation
             isLandingPage={isLandingPage}
             bootstrapNavbarClassNames={bootstrapNavbarClassNames}
@@ -134,7 +172,6 @@ class Navigation extends React.Component {
             scrolled={this.state.scrolled}
             navigationStyle={navigationStyle}
           />
-
           <NavigationSection heightClassName={heightClassName} />
           <ScrollToNextSectionLink heightClassName={heightClassName} />
         </Scrivito.BackgroundImageTag>

@@ -1,4 +1,4 @@
-import * as Scrivito from 'scrivito';
+import * as Scrivito from "scrivito";
 
 var origin = location.origin;
 switch (origin) {

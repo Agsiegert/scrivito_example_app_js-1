@@ -1,5 +1,5 @@
 /*!
- * Bootstrap v3.3.7
+ * Bootstrap v4
  */
 
 /* important variables
@@ -286,6 +286,9 @@ img,
 .margin-bottom {
   margin-bottom: 20px;
 }
+.margin-right {
+  margin-right: 10px;
+}
 .neg-margin {
   margin-right: -15px;
   margin-left: -15px;
@@ -350,6 +353,10 @@ small,
   /* background: $logo-dark no-repeat center center / contain; height: 50px; */
   width: 150px;
   margin-bottom: 20px;
+}
+
+.container-initial {
+  position: initial !important;
 }
 
 /* button adaoptions
@@ -463,6 +470,63 @@ $easing: cubic-bezier(0.7, 0, 0, 0.7);
   }
 }
 
+/* video background
+=================================================================== */
+.video-full-screen {
+  min-width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: -10;
+}
+
+/* titles of modules
+=================================================================== */
+
+.title-bgc {
+  background-color: $secondary;
+  padding: 3rem;
+  h1 {
+    color: #fff;
+    margin-bottom: 0;
+  }
+  span {
+    color: #fff;
+  }
+}
+
+.details-title-box {
+  margin: 1rem 0;
+  i.fa {
+    width: 20px;
+    margin-right: 10px;
+    font-size: 15px;
+    text-align: center;
+    color: #fff;
+  }
+  .font-weight-bold {
+    margin-right: 0.25rem;
+  }
+  h2, div {
+    color: #fff;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  .location-title {
+    margin-top: 10px;
+    h2 {
+      margin-bottom: 0;
+      text-transform: uppercase;
+    }
+    .event-info {
+      margin-left: 1.9rem;
+    }
+  }
+}
+
+
+
 /* sections
 =================================================================== */
 
@@ -488,7 +552,7 @@ $easing: cubic-bezier(0.7, 0, 0, 0.7);
 .bg-greywhite,
 .bg-white {
   &.medium-height {
-    min-height: 450px;
+    min-height: 300px;
   }
   &.min-height {
     min-height: 150px;
@@ -564,7 +628,8 @@ $easing: cubic-bezier(0.7, 0, 0, 0.7);
   .h5,
   .h6,
   .table-features,
-  .card.card-theme {
+  .card.card-theme,
+  .edit-mode-link {
     color: #fff !important;
   }
 }
@@ -626,7 +691,10 @@ footer {
 }
 
 /* nav section adaptions */
-section.navbar-fixed { padding-top: 80px; }
+section.navbar-fixed {
+  padding-top: 80px;
+  overflow: hidden;
+}
 
 /* navbar
 =================================================================== */
@@ -1022,6 +1090,7 @@ section.navbar-fixed { padding-top: 80px; }
     font-size: 24px;
     text-transform: none;
     border-top: 1px solid #eee;
+    text-align: left;
   }
   .nav > li:first-child > a {
     border: 0;
@@ -2267,6 +2336,28 @@ _:-ms-fullscreen,
   left: 20px;
 }
 
+.carousel-control-prev, .carousel-control-prev:hover  {
+  opacity: 1;
+  cursor: pointer;
+  .carousel-control-prev-icon {
+    background-image: url("../images/arrow_prev.svg");
+    height: 100px;
+    width: 50px;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));
+  }
+}
+
+.carousel-control-next, .carousel-control-next:hover  {
+  opacity: 1;
+  cursor: pointer;
+  .carousel-control-next-icon {
+    background-image: url("../images/arrow_next.svg");
+    height: 100px;
+    width: 50px;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));
+  }
+}
+
 /* carousel + client-wrapper
 =================================================================== */
 
@@ -2447,6 +2538,86 @@ _:-ms-fullscreen,
   flex: 0;
 }
 
+/* cookie box
+=================================================================== */
+
+.cookie-box {
+  width: 100%;
+  background: rgba(61, 65, 66, 0.85);
+  z-index: 1000000;
+  padding: 25px 17% 25px 17%;
+}
+
+.cookie-content {
+  color: $theme-greywhite;
+  margin-right: 20px;
+}
+
+.cookie-button {
+  margin: 0;
+  height: 50px;
+}
+
+.cookie-box-title {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.cookie-box-link {
+  font-weight: 700;
+  text-decoration: underline;
+  margin-left: 5px;
+}
+
+.cookie-box-content {
+  font-size: 14px;
+}
+
+img.cookie-img {
+  margin: 0;
+  opacity: 0.8;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+
+.cookie-img-box {
+  margin-right: 1rem;
+}
+
+@media (max-width: $screen-md-max) {
+  .cookie-box {
+    padding: 25px 3.5vw;
+  }
+}
+
+@media (max-width: $screen-sm-max) {
+  .cookie-img-box {
+    width: 77px;
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .cookie-img-box {
+    display: none;
+  }
+  img.cookie-img {
+    display: none;
+  }
+  .cookie-content {
+    margin: 0;
+  }
+  .cookie-button {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .cookie-box {
+    padding: 20px;
+  }
+}
 /* loader
 =================================================================== */
 
@@ -2697,6 +2868,17 @@ _:-ms-fullscreen,
     max-height: 26px;
   }
 }
+
+/* content iframes properties
+=================================================================== */
+.fullsize-iframe {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+}
+
 
 /* section google map
 =================================================================== */

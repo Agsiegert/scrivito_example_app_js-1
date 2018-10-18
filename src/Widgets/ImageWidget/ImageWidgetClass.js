@@ -1,11 +1,24 @@
-import * as Scrivito from 'scrivito';
+import * as Scrivito from "scrivito";
 
-const ImageWidget = Scrivito.provideWidgetClass('ImageWidget', {
+const ImageWidget = Scrivito.provideWidgetClass("ImageWidget", {
   attributes: {
-    image: 'reference',
-    alignment: ['enum', { values: ['left', 'center', 'right'] }],
-    alternativeText: 'string',
-    link: 'link',
+    image: "reference",
+    alignment: ["enum", { values: ["left", "center", "right"] }],
+    alternativeText: "string",
+    link: "link",
+    animation: [
+      "enum",
+      {
+        values: [
+          "none",
+          "fadeInLeft",
+          "fadeInRight",
+          "fadeInDown",
+          "fadeInUp",
+          "zoomIn",
+        ],
+      },
+    ],
   },
 });
 

@@ -1,22 +1,26 @@
-import * as Scrivito from 'scrivito';
-import redirectObjIcon from '../../assets/images/redirect_obj.svg';
+import * as Scrivito from "scrivito";
+import redirectObjIcon from "../../assets/images/redirect_obj.svg";
 
-Scrivito.provideEditingConfig('Redirect', {
-  title: 'Redirect',
-  thumbnail: `/${redirectObjIcon}`,
-  hideInSelectionDialogs: true,
+Scrivito.provideEditingConfig("Redirect", {
+  title: "Redirect",
+  thumbnail: redirectObjIcon,
+  hideInSelectionDialogs: false,
   attributes: {
+    title: {
+      title: "Title",
+      description: "Limit to 55 characters.",
+    },
     link: {
-      title: 'Link',
+      title: "Link",
     },
     openInUi: {
-      title: 'Open in Scrivito UI?',
-      description: 'Default: No',
-      values: [{ value: 'yes', title: 'Yes' }, { value: 'no', title: 'No' }],
+      title: "Open in Scrivito UI?",
+      description: "Default: No",
+      values: [{ value: "yes", title: "Yes" }, { value: "no", title: "No" }],
     },
   },
-  properties: ['link', 'openInUi'],
+  properties: ["title", "link", "openInUi"],
   initialContent: {
-    openInUi: 'no',
+    openInUi: "no",
   },
 });
