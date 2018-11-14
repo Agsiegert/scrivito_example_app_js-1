@@ -5,6 +5,9 @@ import AnimateOnReveal from "../../Components/AnimateOnReveal";
 Scrivito.provideComponent("ImageWidget", ({ widget }) => {
   let image = (
     <Scrivito.ImageTag
+      className="lazyload"
+      data-size="auto"
+      data-src={imgSrc(widget)}
       content={widget}
       attribute="image"
       alt={alternativeText(widget)}
@@ -27,6 +30,15 @@ Scrivito.provideComponent("ImageWidget", ({ widget }) => {
     </AnimateOnReveal>
   );
 });
+
+function imgSrc(widget) {
+  const image = widget.get("image");
+  if (image) {
+    return image.get('blob').url();
+  }
+
+  return "";
+}
 
 function alternativeText(widget) {
   const widgetAlternativeText = widget.get("alternativeText");
