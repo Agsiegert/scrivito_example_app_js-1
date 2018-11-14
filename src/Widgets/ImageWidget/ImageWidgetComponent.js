@@ -1,6 +1,8 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import AnimateOnReveal from "../../Components/AnimateOnReveal";
+import 'lazysizes';
+import 'lazysizes/plugins/attrchange/ls.attrchange';
 
 Scrivito.provideComponent("ImageWidget", ({ widget }) => {
   let image = (
