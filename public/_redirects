@@ -1,7 +1,6 @@
 ##
 # Netlify redirect rules. See https://www.netlify.com/docs/redirects/ for details.
 ##
-/guest  /trip 200
 
 # Scrivito routes
 /scrivito/:slug/* /scrivito/index.html 200
