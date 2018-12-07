@@ -6,14 +6,14 @@
     "https:",
     "wss:",
     "'self'",
-    "https://d33wubrfki0l68.cloudfront.net/css/951eeeab87a0b8aa22c411696f73585275d11533/index.css"
+    "https://d33wubrfki0l68.cloudfront.net/css/951eeeab87a0b8aa22c411696f73585275d11533/index.css",
     "https://assets.scrivito.com/",
     "'sha256-5ieGubxPx4XvxN9UkBcwNn4s5WWNXqo4tINEjUfCm48='",
     "'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='"
   ],
   "script-src": [
     "'self'",
-    "https://d33wubrfki0l68.cloudfront.net/js/8a5dee19376f5ef7546cf55eff680cc99033108c/index.js"
+    "https://d33wubrfki0l68.cloudfront.net/js/8a5dee19376f5ef7546cf55eff680cc99033108c/index.js",
     "https://api.scrivito.com",
     "https://app.intercom.io",
     "https://assets.scrivito.com",
