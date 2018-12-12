@@ -11,7 +11,6 @@ import prerenderSitemap from "./prerenderContent/prerenderSitemap";
 
 const PRERENDER_OBJ_CLASSES_BLACKLIST = [
   "Download",
-  "Image",
   "Redirect",
   "Video",
 ];
@@ -22,6 +21,7 @@ const SITEMAP_OBJ_CLASSES_WHITELIST = [
   "BlogPost",
   "Event",
   "Homepage",
+  "Image",
   "Job",
   "LandingPage",
   "Page",
