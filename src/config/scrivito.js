@@ -1,20 +1,9 @@
 import * as Scrivito from "scrivito";
 
-var origin = location.origin;
-switch (origin) {
-  case 'https://shi.netlify.com' :
-    origin = 'my-product';
-    break;
-  case 'https://www.safehomeinspection.com' :
-    origin = 'home';
-    break;
-  case 'https://homeinspectionlink.com' :
-    origin = 'home-inspection-link'
-  default:
-    origin = 'home';
+const config = { tenant: process.env.SCRIVITO_TENANT };
+
+if (process.env.SCRIVITO_ORIGIN) {
+  config.origin = process.env.SCRIVITO_ORIGIN;
 }
 
-Scrivito.configure({
-  tenant: process.env.SCRIVITO_TENANT,
-  homepage: () => Scrivito.Obj.getByPermalink(origin),
-});
+Scrivito.configure(config);
