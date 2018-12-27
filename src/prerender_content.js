@@ -11,6 +11,7 @@ import prerenderSitemap from "./prerenderContent/prerenderSitemap";
 
 const PRERENDER_OBJ_CLASSES_BLACKLIST = [
   "Download",
+  "Image",
   "Redirect",
   "Video",
 ];
