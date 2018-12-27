@@ -4,7 +4,7 @@
   "style-src": [
     "'self'",
     "https://assets.scrivito.com/",
-    "unsafe-inline"
+    "'unsafe-inline'"
   ],
   "script-src": [
     "'self'",
