@@ -37,6 +37,11 @@ Scrivito.provideEditingConfig("SectionWidget", {
     backgroundImage: {
       title: "Background image",
     },
+    deferVisibility: {
+      description:
+        "Show the section only when it gets close to the visual viewport. Default: Yes",
+      values: [{ value: "yes", title: "Yes" }, { value: "no", title: "No" }],
+    },
   },
   properties: [
     "backgroundColor",
@@ -44,11 +49,13 @@ Scrivito.provideEditingConfig("SectionWidget", {
     "useFullWidth",
     "useFullHeight",
     "showPadding",
+    "deferVisibility",
   ],
   initialContent: {
     backgroundColor: "white",
     showPadding: "yes",
     useFullHeight: "no",
     useFullWidth: "no",
+    deferVisibility: "yes",
   },
 });
