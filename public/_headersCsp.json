@@ -8,8 +8,7 @@
     "'self'",
     "https://d33wubrfki0l68.cloudfront.net/",
     "https://assets.scrivito.com/",
-    "'sha256-5ieGubxPx4XvxN9UkBcwNn4s5WWNXqo4tINEjUfCm48='",
-    "'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='"
+    "unsafe-inline"
   ],
   "script-src": [
     "'self'",
