@@ -39,7 +39,7 @@ Scrivito.provideEditingConfig("SectionWidget", {
     },
     deferVisibility: {
       description:
-        "Show the section only when it gets close to the visual viewport. Default: No",
+        "Show the section only when it gets close to the visual viewport. Default: Yes",
       values: [{ value: "yes", title: "Yes" }, { value: "no", title: "No" }],
     },
   },
