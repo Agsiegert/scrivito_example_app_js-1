@@ -21,7 +21,6 @@ const SITEMAP_OBJ_CLASSES_WHITELIST = [
   "BlogPost",
   "Event",
   "Homepage",
-  "Image",
   "Job",
   "LandingPage",
   "Page",
