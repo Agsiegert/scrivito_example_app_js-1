@@ -19,6 +19,13 @@ Scrivito.provideComponent("SectionWidget", ({ widget }) => {
       },
       { image: backgroundImage },
     ];
+  } else {
+    sectionStyle.background = [
+      {
+        image: backgroundImage,
+        size: "100vmax 100vmax",
+      },
+    ];
   }
 
   sectionClassNames.push(`bg-${backgroundColor}`);
