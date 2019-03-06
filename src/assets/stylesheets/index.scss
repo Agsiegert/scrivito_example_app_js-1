@@ -573,6 +573,12 @@ $easing: cubic-bezier(0.7, 0, 0, 0.7);
   }
 }
 
+@media (min-width: $screen-lg-min) {
+.parallax {
+    background-attachment: fixed !important;
+  }
+}
+
 .nav-only {
   padding: 0 !important;
   height: 75px;
