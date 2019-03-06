@@ -8,6 +8,8 @@ Scrivito.provideComponent("SectionWidget", ({ widget }) => {
 
   const sectionStyle = {};
 
+  const parallax = widget.get('parallaxEffect')
+
   let backgroundColor = widget.get("backgroundColor") || "white";
 
   const backgroundImage = widget.get("backgroundImage");
@@ -22,6 +24,10 @@ Scrivito.provideComponent("SectionWidget", ({ widget }) => {
   }
 
   sectionClassNames.push(`bg-${backgroundColor}`);
+
+  if (parallax === "yes") {
+    sectionClassNames.push("parallax");
+  }
 
   if (widget.get("showPadding") === "no") {
     sectionClassNames.push("no-padding");
