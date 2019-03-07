@@ -4,7 +4,6 @@
   "style-src": ["'self'", "data:", "https:", "wss:", "'unsafe-inline'"],
   "script-src": [
     "'self'",
-    "https://d33wubrfki0l68.cloudfront.net/",
     "https://api.scrivito.com",
     "https://app.intercom.io",
     "https://assets.scrivito.com",
