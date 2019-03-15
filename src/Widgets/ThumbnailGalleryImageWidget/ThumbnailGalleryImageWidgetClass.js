@@ -9,6 +9,7 @@ const ThumbnailGalleryImageWidget = Scrivito.provideWidgetClass(
       title: "string",
       subtitle: "string",
       tags: "stringlist",
+      link: "link",
     },
   }
 );

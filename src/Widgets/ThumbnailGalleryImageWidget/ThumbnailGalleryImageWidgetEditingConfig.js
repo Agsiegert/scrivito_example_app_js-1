@@ -15,8 +15,12 @@ Scrivito.provideEditingConfig("ThumbnailGalleryImageWidget", {
     tags: {
       title: "Tags",
     },
+    link: {
+      title: "Link (optional)",
+      description: "The page to open after clicking the image.",
+    },
   },
-  properties: ["image", "title", "subtitle", "tags"],
+  properties: ["image", "title", "subtitle", "tags", "link"],
   titleForContent: widget =>
     `${widget.get("title")} - ${widget.get("subtitle")}`,
 });
