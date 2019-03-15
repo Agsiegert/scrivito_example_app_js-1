@@ -10,50 +10,8 @@ class ThumbnailGalleryComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentImage: 0,
-      lightboxIsOpen: false,
       currentTag: "",
     };
-
-    this.openLightbox = this.openLightbox.bind(this);
-    this.closeLightbox = this.closeLightbox.bind(this);
-    this.gotoPrevious = this.gotoPrevious.bind(this);
-    this.gotoNext = this.gotoNext.bind(this);
-    this.gotoImage = this.gotoImage.bind(this);
-    this.setTag = this.setTag.bind(this);
-  }
-
-  openLightbox(index, event) {
-    event.preventDefault();
-    this.setState({
-      currentImage: index,
-      lightboxIsOpen: true,
-    });
-  }
-
-  closeLightbox() {
-    this.setState({
-      currentImage: 0,
-      lightboxIsOpen: false,
-    });
-  }
-
-  gotoPrevious() {
-    this.setState({
-      currentImage: this.state.currentImage - 1,
-    });
-  }
-
-  gotoNext() {
-    this.setState({
-      currentImage: this.state.currentImage + 1,
-    });
-  }
-
-  gotoImage(index) {
-    this.setState({
-      currentImage: index,
-    });
   }
 
   setTag(tag) {
@@ -67,7 +25,6 @@ class ThumbnailGalleryComponent extends React.Component {
     const images = widget
       .get("images")
       .filter(subWidget => isImage(subWidget.get("image")));
-    const lightboxImages = images.map(image => lightboxOptions(image));
 
     if (!images.length) {
       return (
@@ -91,23 +48,10 @@ class ThumbnailGalleryComponent extends React.Component {
               <Thumbnail
                 key={image.id()}
                 widget={image}
-                openLightbox={event => this.openLightbox(imageIndex, event)}
                 currentTag={this.state.currentTag}
               />
             ))}
           </div>
-          <Lightbox
-            images={lightboxImages}
-            currentImage={this.state.currentImage}
-            isOpen={this.state.lightboxIsOpen}
-            onClickImage={this.handleClickImage}
-            onClickNext={this.gotoNext}
-            onClickPrev={this.gotoPrevious}
-            onClickThumbnail={this.gotoImage}
-            onClose={this.closeLightbox}
-            showThumbnails
-            backdropClosesModal
-          />
         </div>
       </div>
     );
@@ -121,6 +65,7 @@ const Thumbnail = Scrivito.connect(({ widget, openLightbox, currentTag }) => {
   const subtitle = widget.get("subtitle");
   const image = widget.get("image");
   const tags = widget.get("tags");
+  const link = widget.get("link");
 
   const classNames = [
     "col-md-3",
@@ -135,21 +80,17 @@ const Thumbnail = Scrivito.connect(({ widget, openLightbox, currentTag }) => {
 
   return (
     <div className={classNames.join(" ")}>
-      <Scrivito.BackgroundImageTag
-        className="gallery-box-image"
-        style={{ background: { image } }}
-      />
-      <a
-        href="#"
-        className="gallery-box-content-wrapper"
-        onClick={openLightbox}
-      >
+        <Scrivito.BackgroundImageTag
+          className="gallery-box-image"
+          style={{ background: { image } }}
+        />
+      <Scrivito.LinkTag to={link} className="gallery-box-content-wrapper">
         <span className="gallery-box-content">
           <i className="fa fa-camera" aria-hidden="true" />
           <span className="title">{title}</span>
           <span className="subtitle">{subtitle}</span>
         </span>
-      </a>
+      </Scrivito.LinkTag>
     </div>
   );
 });
@@ -165,21 +106,4 @@ function allTags(images) {
 
   // sort tags
   return uniqueTags.sort();
-}
-
-function lightboxOptions(galleryImageWidget) {
-  const image = galleryImageWidget.get("image");
-  const binary = image.get("blob");
-  const srcUrl = binary.optimizeFor({ width: fullScreenWidthPixels() }).url();
-  const alt = image.get("alternativeText");
-
-  return {
-    src: srcUrl,
-    thumbnail: srcUrl,
-    caption: [
-      galleryImageWidget.get("title"),
-      galleryImageWidget.get("subtitle"),
-    ].join(" - "),
-    alt,
-  };
 }
