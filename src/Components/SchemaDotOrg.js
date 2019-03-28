@@ -12,7 +12,9 @@ import dataFromAddressWidget from "./SchemaDotOrg/dataFromAddressWidget";
 const SchemaDotOrg = Scrivito.connect(({ content }) => {
   const data = pruneEmptyValues(dataFromItem(content));
 
-  return <script type="application/ld+json"> {{JSON.stringify(data)}} </script>;
+  console.log(JSON.stringify(data));
+
+  return <script type="application/ld+json"> {JSON.stringify(data)} </script>;
 });
 
 function dataFromItem(item) {
