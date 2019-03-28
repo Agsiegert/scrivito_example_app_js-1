@@ -15,7 +15,7 @@ function dataFromJob(job) {
       "name": job.get("hiringOrganizationName"),
       "sameAs": job.get("hiringOrganizationWebsite"),
     },
-    "jobLocation": locationFromJob(job),
+    "jobLocation": { locationFromJob(job) },
   };
 }
 
@@ -23,7 +23,7 @@ function locationFromJob(job) {
   return {
     "@type": "Place",
     "name": job.get("locationName"),
-    "address": addressFromJob(job),
+    "address": { addressFromJob(job) },
   };
 }
 
