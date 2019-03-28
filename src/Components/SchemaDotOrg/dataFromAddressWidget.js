@@ -1,10 +1,10 @@
 function dataFromAddressWidget(addressWidget) {
   return {
     "@type": "Place",
-    name: addressWidget.get("locationName"),
-    address: addressFromAddressWidget(addressWidget),
-    telephone: addressWidget.get("phone"),
-    faxNumber: addressWidget.get("fax"),
+    name: "",
+    address: "",
+    telephone: "",
+    faxNumber: "",
   };
 }
 
