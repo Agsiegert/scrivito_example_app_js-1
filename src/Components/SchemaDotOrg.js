@@ -19,8 +19,8 @@ const SchemaDotOrg = Scrivito.connect(({ content }) => {
 
 function dataFromItem(item) {
   switch (item.objClass()) {
-    case "AddressWidget":
-      return dataFromAddressWidget(item);
+    // case "AddressWidget":
+    //   return dataFromAddressWidget(item);
     case "Author":
       return dataFromAuthor(item);
     case "Blog":
