@@ -10,9 +10,9 @@ import dataFromBlogPost from "./SchemaDotOrg/dataFromBlogPost";
 import dataFromAddressWidget from "./SchemaDotOrg/dataFromAddressWidget";
 
 const SchemaDotOrg = Scrivito.connect(({ content }) => {
-  const data = pruneEmptyValues(dataFromItem(content));
+  const data = JSON.stringify(pruneEmptyValues(dataFromItem(content)));
 
-  return <script type="application/ld+json">`${JSON.stringify(data)}`</script>;
+  return <script type="application/ld+json">{data}</script>;
 });
 
 function dataFromItem(item) {
