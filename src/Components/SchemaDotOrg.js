@@ -14,9 +14,10 @@ const SchemaDotOrg = Scrivito.connect(({ content }) => {
   const data = pruneEmptyValues(dataFromItem(content));
 
   return
-    <Helmet encodeSpecialCharacters={false}>
-      <script type="application/ld+json"> {JSON.stringify(data)} </script>
-    </Helmet>;
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />;
 });
 
 function dataFromItem(item) {
