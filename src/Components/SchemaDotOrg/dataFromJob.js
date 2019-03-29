@@ -13,9 +13,9 @@ function dataFromJob(job) {
     hiringOrganization: {
       "@type": "Organization",
       name: job.get("hiringOrganizationName"),
-      sameAs: job.get("hiringOrganizationWebsite"),
+      sameAs: job.get("hiringOrganizationWebsite")
     },
-    jobLocation: locationFromJob(job),
+    jobLocation: locationFromJob(job)
   };
 }
 
@@ -23,7 +23,7 @@ function locationFromJob(job) {
   return {
     "@type": "Place",
     name: job.get("locationName"),
-    address: addressFromJob(job),
+    address: addressFromJob(job)
   };
 }
 
@@ -34,7 +34,7 @@ function addressFromJob(job) {
     addressLocality: job.get("locationLocality"),
     addressRegion: job.get("locationRegion"),
     postalCode: job.get("locationPostalCode"),
-    addressCountry: job.get("locationCountry"),
+    addressCountry: job.get("locationCountry")
   };
 }
 
