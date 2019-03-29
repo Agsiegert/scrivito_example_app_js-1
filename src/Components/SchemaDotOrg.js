@@ -8,7 +8,6 @@ import dataFromJob from "./SchemaDotOrg/dataFromJob";
 import dataFromBlog from "./SchemaDotOrg/dataFromBlog";
 import dataFromBlogPost from "./SchemaDotOrg/dataFromBlogPost";
 import dataFromAddressWidget from "./SchemaDotOrg/dataFromAddressWidget";
-import {Helmet} from "react-helmet";
 
 const SchemaDotOrg = Scrivito.connect(({ content }) => {
   const data = pruneEmptyValues(dataFromItem(content));
