@@ -13,9 +13,10 @@ import {Helmet} from "react-helmet";
 const SchemaDotOrg = Scrivito.connect(({ content }) => {
   const data = pruneEmptyValues(dataFromItem(content));
 
-  return(
-      <script type="application/ld+json"> {`${JSON.stringify(data)}`} </script>
-    );
+  return
+    <Helmet encodeSpecialCharacters={false}>
+      <script type="application/ld+json"> {JSON.stringify(data)} </script>
+    </Helmet>;
 });
 
 function dataFromItem(item) {
