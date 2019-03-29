@@ -2,7 +2,7 @@ import formatDate from "../../utils/formatDate";
 import { textExtractFromWidgetlist } from "../../utils/textExtract";
 
 function dataFromJob(job) {
-  return `{
+  return (`
     "@context": "http://schema.org",
     "@type": "JobPosting",
     title: job.get("title"),
@@ -16,7 +16,7 @@ function dataFromJob(job) {
       sameAs: job.get("hiringOrganizationWebsite")
     },
     jobLocation: locationFromJob(job)
-  }`;
+  `);
 }
 
 function locationFromJob(job) {
