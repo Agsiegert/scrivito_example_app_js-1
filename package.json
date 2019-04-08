@@ -63,7 +63,7 @@
     "react-slick": "^0.23.2",
     "reactstrap": "^7.0.2",
     "sass-loader": "^7.1.0",
-    "scrivito": "^1.5.0-rc1",
+    "scrivito": "^1.6.0-rc1",
     "slick-carousel": "^1.6.0",
     "striptags": "^3.1.1",
     "terser-webpack-plugin": "^1.2.1",
