@@ -2,7 +2,7 @@
 # Netlify redirect rules. See https://www.netlify.com/docs/redirects/ for details.
 ##
 
-/jobs https://www.halloffameopen.com/
+https://growing-breadfruit-scrivito-0406.scrivito.net/jobs https://www.halloffameopen.com/
 /about https://www.halloffameopen.com/
 
 # Scrivito routes
