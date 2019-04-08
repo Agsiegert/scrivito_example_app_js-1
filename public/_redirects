@@ -3,6 +3,7 @@
 ##
 
 /jobs https://www.halloffameopen.com/
+/about https://www.halloffameopen.com/
 
 # Scrivito routes
 /scrivito/:slug/* /scrivito/index.html 200
