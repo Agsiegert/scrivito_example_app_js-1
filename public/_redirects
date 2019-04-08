@@ -2,6 +2,8 @@
 # Netlify redirect rules. See https://www.netlify.com/docs/redirects/ for details.
 ##
 
+/jobs https://www.halloffameopen.com/
+
 # Scrivito routes
 /scrivito/:slug/* /scrivito/index.html 200
 /scrivito /scrivito/index.html 200
