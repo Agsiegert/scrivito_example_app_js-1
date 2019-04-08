@@ -2,8 +2,8 @@
 # Netlify redirect rules. See https://www.netlify.com/docs/redirects/ for details.
 ##
 
-https://growing-breadfruit-scrivito-0406.scrivito.net/jobs https://www.halloffameopen.com/
-/about https://www.halloffameopen.com/
+https://growing-breadfruit-scrivito-0406.scrivito.net/about/jobs https://www.halloffameopen.com/
+/f84a4b183c1770fe https://www.halloffameopen.com/
 
 # Scrivito routes
 /scrivito/:slug/* /scrivito/index.html 200
