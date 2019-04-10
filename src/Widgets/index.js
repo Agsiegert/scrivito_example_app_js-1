@@ -1,3 +1,5 @@
+import "scrivito-areachart";
+
 function importAll(r) {
   r.keys().forEach(r);
 }
