@@ -1,3 +1,6 @@
+import "scrivito-collabsible-card";
+import "scrivito-collabsible-card/index.css";
+
 function importAll(r) {
   r.keys().forEach(r);
 }
