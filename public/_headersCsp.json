@@ -1,6 +1,6 @@
 {
   "base-uri": "'none'",
-  "default-src": ["'self'", "data:", "https:", "wss:"],
+  "default-src": ["http://content.jwplatform.com/","'self'", "data:", "https:", "wss:"],
   "style-src": ["'self'", "data:", "https:", "wss:", "'unsafe-inline'"],
   "script-src": [
     "'self'",
@@ -9,7 +9,14 @@
     "https://assets.scrivito.com",
     "https://js.intercomcdn.com",
     "https://widget.intercom.io",
-    "https://www.google-analytics.com"
+    "https://www.google-analytics.com",
+    "https://maps.googleapis.com/maps/api/js",
+    "https://platform.twitter.com/widgets.js",
+    "https://platform.twitter.com/js/",
+    "https://cdn.syndication.twimg.com/timeline/profile",
+    "http://content.jwplatform.com/",
+    "https://platform.twitter.com/",
+    "https://syndication.twitter.com/"
   ],
   "object-src": "'none'",
   "block-all-mixed-content": true
