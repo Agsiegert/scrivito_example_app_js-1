@@ -4,6 +4,7 @@ import { registerTextExtract } from "../../utils/textExtractRegistry";
 const MailchimpSignUpWidget = Scrivito.provideWidgetClass("MailchimpSignUpWidget", {
   attributes: {
     buttonText: "string",
+    successMessage: "widgetlist",
   },
 });
 

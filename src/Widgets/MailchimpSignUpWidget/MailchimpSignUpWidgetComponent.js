@@ -12,7 +12,8 @@ class MailchimpSignUpWidget extends React.Component {
       email: '',
       loading: false,
       success: false,
-      error: false
+      error: false,
+      errorMsg: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -42,24 +43,27 @@ class MailchimpSignUpWidget extends React.Component {
       })
     }).catch((e) => {
       this.setState({
+        errorMsg: e.detail,
         error: true,
         loading: false
       })
     })
     event.preventDefault();
   }
+
   renderForm() {
     const widget = this.props.widget;
-    const { success, loading } = this.state
-    const buttonText = (loading) ? '...' : widget.get("buttonText")
+    const { success, loading, errorMsg } = this.state
+    const buttonText = (loading) ? "..." : widget.get("buttonText")
     const handler = (loading) ? loadNote : this.handleSubmit
 
     /* if they submitted the form, show thanks */
     if (success) {
       return (
-        <div>
-          <h2>Thank you for signing up!</h2>
-        </div>
+        <Scrivito.ContentTag
+        content={widget}
+        attribute="successMessage"
+      />
       )
     }
 
@@ -77,6 +81,9 @@ class MailchimpSignUpWidget extends React.Component {
         <button className="btn btn-primary btn-block" type="submit">
           {buttonText}
         </button>
+        <span>
+          {errorMsg}
+        </span>
       </form>
     )
   }
