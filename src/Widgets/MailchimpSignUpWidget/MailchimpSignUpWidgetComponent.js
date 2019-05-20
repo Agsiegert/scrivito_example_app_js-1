@@ -13,7 +13,7 @@ class MailchimpSignUpWidget extends React.Component {
       loading: false,
       success: false,
       error: false,
-      errorMsg: ""
+      errorMsg: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -21,7 +21,7 @@ class MailchimpSignUpWidget extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ email: event.target.value });
+    this.setState({ email: event.target.value, errorMsg: '' });
   }
 
   handleSubmit(event) {
@@ -43,7 +43,7 @@ class MailchimpSignUpWidget extends React.Component {
       })
     }).catch((e) => {
       this.setState({
-        errorMsg: JSON.stringify(e.response.data.errorMessage),
+        errorMsg: JSON.stringify(e.response.data.errorMessage).replace(/\"([^(\")"]+)\":/g,"$1:"),
         error: true,
         loading: false
       })
