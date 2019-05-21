@@ -80,10 +80,10 @@ class MailchimpSignUpWidget extends React.Component {
         />
         <button className="btn btn-primary btn-block" type="submit">
           {buttonText}
+          <span>
+            {errorMsg}
+          </span>
         </button>
-        <span>
-          {errorMsg}
-        </span>
       </form>
     )
   }
