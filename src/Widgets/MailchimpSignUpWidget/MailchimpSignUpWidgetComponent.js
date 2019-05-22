@@ -79,7 +79,7 @@ class MailchimpSignUpWidget extends React.Component {
       <form onSubmit={handler}>
         <input
           type="email"
-          name="email"
+          name="MERGE0"
           className="form-control form-control-lg"
           value={this.state.email}
           onChange={this.handleChange}

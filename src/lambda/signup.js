@@ -2,7 +2,6 @@ const request = require("request");
 
 const mailChimpAPI = process.env.MAILCHIMP_API_KEY;
 const mailChimpListID = process.env.MAILCHIMP_LIST_ID;
-const mailChimpUserID = process.env.MAILCHIMP_USER_ID;
 const mcRegion = process.env.MAILCHIMP_REGION;
 
 module.exports.handler = (event, context, callback) => {
@@ -40,7 +39,7 @@ module.exports.handler = (event, context, callback) => {
 
   request({
     method: "POST",
-    url: `https://hotmail.${mcRegion}.list-manage.com/subscribe/post?u=${mailChimpUserID}&amp;id=${mailChimpListID}`,
+    url: `https://${mcRegion}.api.mailchimp.com/3.0/lists/${mailChimpListID}/members`,
     body: subscriber,
     headers: {
       "Authorization": `apikey ${mailChimpAPI}`,
