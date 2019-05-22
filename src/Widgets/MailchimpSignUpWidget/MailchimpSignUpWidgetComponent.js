@@ -46,6 +46,9 @@ class MailchimpSignUpWidget extends React.Component {
         loading: false
       })
     }).catch((e) => {
+      console.log(e.body);
+      console.log(response);
+      console.log(e);
       this.setState({
         errorMsg: JSON.stringify(e.response.data.errorMessage),
         error: true,
@@ -79,7 +82,7 @@ class MailchimpSignUpWidget extends React.Component {
       <form onSubmit={handler}>
         <input
           type="email"
-          name="MERGE0"
+          name="email"
           className="form-control form-control-lg"
           value={this.state.email}
           onChange={this.handleChange}
