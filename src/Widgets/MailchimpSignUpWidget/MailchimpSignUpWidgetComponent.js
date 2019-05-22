@@ -21,7 +21,11 @@ class MailchimpSignUpWidget extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ email: event.target.value, errorMsg: [] });
+    this.setState({
+      email: event.target.value,
+      errorMsg: [],
+      error: false
+    });
   }
 
   handleSubmit(event) {
@@ -53,9 +57,13 @@ class MailchimpSignUpWidget extends React.Component {
 
   renderForm() {
     const widget = this.props.widget;
-    const { success, loading, errorMsg } = this.state
+    const { success, loading, error, errorMsg } = this.state
     const buttonText = (loading) ? "..." : widget.get("buttonText")
     const handler = (loading) ? loadNote : this.handleSubmit
+    const btnColor = (error) ? "warning" : "primary"
+    const err = (error)
+      ? <div className="alert alert-warning">{errorMsg}</div>
+      : null
 
     /* if they submitted the form, show thanks */
     if (success) {
@@ -78,12 +86,10 @@ class MailchimpSignUpWidget extends React.Component {
           placeholder="Enter your email address..."
           required
         />
-        <button className="btn btn-primary btn-block" type="submit">
+        <button className={`btn btn-${btnColor} btn-block`} type="submit">
           {buttonText}
-          <span>
-            {errorMsg}
-          </span>
         </button>
+        {err}
       </form>
     )
   }
