@@ -41,7 +41,6 @@ module.exports.handler = (event, context, callback) => {
   request({
     method: "POST",
     url: `https://hotmail.${mcRegion}.list-manage.com/subscribe/post?u=${mailChimpUserID}&amp;id=${mailChimpListID}`,
-    // url: `https://${mcRegion}.api.mailchimp.com/3.0/lists/${mailChimpListID}/members`,
     body: subscriber,
     headers: {
       "Authorization": `apikey ${mailChimpAPI}`,
