@@ -3,6 +3,8 @@
 import "scrivito-areachart";
 import "scrivito-adv-button";
 import "scrivito-adv-button/index.css";
+import "scrivito-collapsible-card";
+import "scrivito-collapsible-card/index.css";
 import "scrivito-social-links";
 import "scrivito-social-links/index.css";
 import "scrivito-highlight-code";
