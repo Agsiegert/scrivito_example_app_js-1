@@ -2,6 +2,7 @@
 # “command” is your build command.
 # “publish” is the directory to publish (relative to root of your repo).
 
-[build]
-  command = "npm run build"
+[build]  
+  Command = "npm run build && npm run build:lambda"
+  functions = "lambda"command = "npm run build"
   publish = "build"

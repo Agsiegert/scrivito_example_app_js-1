@@ -1,3 +1,5 @@
+import "scrivito-mailchimp-lambda-widget";
+
 function importAll(r) {
   r.keys().forEach(r);
 }
