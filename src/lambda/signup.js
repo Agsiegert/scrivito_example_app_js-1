@@ -53,6 +53,9 @@ module.exports.handler = (event, context, callback) => {
 
     console.log("Mailchimp body: " + JSON.stringify(bodyObj));
     console.log("Status Code: " + response.statusCode);
+    console.log('error:', error);
+    console.log('statusCode:', response && response.statusCode);
+    console.log('body:', body);
 
     if (response.statusCode < 300 || (bodyObj.status === 400 && bodyObj.title === "Member Exists")) {
       console.log("Added to list in Mailchimp subscriber list");
