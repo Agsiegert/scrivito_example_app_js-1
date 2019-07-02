@@ -54,7 +54,7 @@ module.exports.handler = (event, context, callback) => {
     console.log("Mailchimp body: " + JSON.stringify(bodyObj));
     console.log("Status Code: " + response.statusCode);
 
-    if (response.statusCode < 300 || (bodyObj.status === 400 && bodyObj.title === "Member Exists")) {
+    if (response.statusCode < 300) {
       console.log("Added to list in Mailchimp subscriber list");
       callback(null, {
         statusCode: 201,
@@ -70,7 +70,7 @@ module.exports.handler = (event, context, callback) => {
     } else {
       console.log("Error from mailchimp", bodyObj.title);
       callback(null, {
-        statusCode: 400,
+        statusCode: `${response.statusCode}`,
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
