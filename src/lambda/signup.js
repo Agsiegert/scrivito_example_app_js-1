@@ -64,7 +64,7 @@ module.exports.handler = (event, context, callback) => {
           "Access-Control-Allow-Credentials": "true"
         },
         body: JSON.stringify({
-          status: `${bodyObj.title}`
+          status: `${bodyObj.title || bodyObj.status}`
         })
       })
     } else {
