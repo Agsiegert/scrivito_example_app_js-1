@@ -68,8 +68,8 @@ module.exports.handler = (event, context, callback) => {
         })
       })
     } else {
-      console.log("Error from mailchimp", bodyObj.detail);
-      callback({
+      console.log("Error from mailchimp", bodyObj.title);
+      callback(null, {
         statusCode: 400,
         headers: {
           "Content-Type": "application/json",
@@ -79,7 +79,7 @@ module.exports.handler = (event, context, callback) => {
         body: JSON.stringify({
           status: "Error saving email"
         })
-      }, null);
+      });
     }
   });
 };
