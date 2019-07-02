@@ -4,3 +4,5 @@ function importAll(r) {
 
 // import all js files under src/Widgets/
 importAll(require.context("./", true, /\.js$/));
+
+import "scrivito-mailchimp-lambda-widget";
