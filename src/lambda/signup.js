@@ -13,7 +13,7 @@ export function handler(event, context, callback) {
   .then(function(results) {
     console.log('RESULTS:', results);
     return {
-      statusCode: 200,
+      statusCode: results.status,
       body: JSON.stringify(results)
     }
   })
