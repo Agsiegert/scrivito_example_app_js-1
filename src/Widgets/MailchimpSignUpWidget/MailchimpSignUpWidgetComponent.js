@@ -61,9 +61,6 @@ class MailchimpSignUpWidget extends React.Component {
     const buttonText = (loading) ? "..." : (error) ? errorMsg : widget.get("buttonText")
     const handler = (loading) ? loadNote : this.handleSubmit
     const btnColor = (error) ? "warning" : "primary"
-    const err = (error)
-      ? <div className="alert alert-warning">{errorMsg}</div>
-      : null
 
     /* if they submitted the form, show thanks */
     if (success) {
@@ -90,7 +87,6 @@ class MailchimpSignUpWidget extends React.Component {
         <button className={`btn btn-${btnColor} btn-block`} type="submit">
           {buttonText}
         </button>
-        {err}
       </form>
     )
   }
