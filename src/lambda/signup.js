@@ -77,7 +77,7 @@ module.exports.handler = (event, context, callback) => {
           "Access-Control-Allow-Credentials": "true"
         },
         body: JSON.stringify({
-          status: "Error saving email"
+          status: `${bodyObj.title}`
         })
       });
     }
