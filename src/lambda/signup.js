@@ -1,19 +1,17 @@
-var Mailchimp = require('mailchimp-api-v3')
+const MailChimp = require('mailchimp-api-v3');
+require('dotenv').config();
 
-const mailChimpAPI = process.env.MAILCHIMP_API_KEY;
-const mailChimpListID = process.env.MAILCHIMP_LIST_ID;
-const mcRegion = process.env.MAILCHIMP_REGION;
-
-const mailchimp = new Mailchimp(mailChimpAPI);
+const { MAILCHIMP_API_KEY, MAILING_LIST_ID } = process.env;
+const mailchimp = new MailChimp(MAILCHIMP_API_KEY);
 
 export function handler(event, context, callback) {
   console.log("EVENT: ", event.body);
 
-  return mailchimp.post(`/lists/${mailChimpListID}/members`, { email_address: event.body, status: 'subscribed' })
+  return mailchimp.post(`/lists/${MAILING_LIST_ID}/members`, { email_address: event.body, status: 'subscribed' })
   .then(function(results) {
     console.log('RESULTS:', results);
     return {
-      statusCode: results.status,
+      statusCode: 200,
       body: JSON.stringify(results)
     }
   })
