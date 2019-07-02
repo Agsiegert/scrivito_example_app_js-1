@@ -69,7 +69,17 @@ module.exports.handler = (event, context, callback) => {
       })
     } else {
       console.log("Error from mailchimp", bodyObj.detail);
-      callback(bodyObj.detail, null);
+      callback({
+        statusCode: 400,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": "true"
+        },
+        body: JSON.stringify({
+          status: "Error saving email"
+        })
+      }, null);
     }
   });
 };
