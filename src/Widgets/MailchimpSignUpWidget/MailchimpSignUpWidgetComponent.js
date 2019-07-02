@@ -46,9 +46,8 @@ class MailchimpSignUpWidget extends React.Component {
         loading: false
       })
     }).catch((e) => {
-      console.log(e.response);
       this.setState({
-        errorMsg: JSON.stringify(e.response),
+        errorMsg: JSON.stringify(e.response.data.status),
         error: true,
         loading: false
       })
