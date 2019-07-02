@@ -12,6 +12,5 @@ Scrivito.provideEditingConfig("MailchimpSignUpWidget", {
   initialContent: {
     buttonText: "Sign me up",
     successMessage: "Thank you for signing up!",
-    ],
   },
 });
