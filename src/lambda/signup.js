@@ -70,7 +70,7 @@ module.exports.handler = (event, context, callback) => {
     } else {
       console.log("Error from mailchimp", bodyObj.detail);
       callback(null, {
-        statusCode: `${parseInt(response.statusCode)}`,
+        statusCode: response.statusCode,
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
