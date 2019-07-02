@@ -62,7 +62,7 @@
     "reactstrap": "^8.0.0",
     "sass-loader": "^7.1.0",
     "scrivito": "^1.6.1",
-    "scrivito-mailchimp-lambda-widget": "^2.1.10",
+    "scrivito-mailchimp-lambda-widget": "2.1.11",
     "slick-carousel": "^1.6.0",
     "striptags": "^3.1.1",
     "terser-webpack-plugin": "^1.3.0",
@@ -73,7 +73,7 @@
     "zip-webpack-plugin": "^3.0.0"
   },
   "scripts": {
-    "build": "webpack -p",
+    "build": "webpack -p --display-error-details",
     "build:lambda": "netlify-lambda build src/lambda",
     "start:lambda": "netlify-lambda serve src/lambda",
     "prerender": "SCRIVITO_PRERENDER=true npm run build && node prerender/storePrerenderedContent.js",
