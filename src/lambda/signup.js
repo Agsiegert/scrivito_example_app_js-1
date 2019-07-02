@@ -68,9 +68,9 @@ module.exports.handler = (event, context, callback) => {
         })
       })
     } else {
-      console.log("Error from mailchimp", bodyObj.title);
+      console.log("Error from mailchimp", bodyObj.detail);
       callback(null, {
-        statusCode: `${response.statusCode}`,
+        statusCode: `${parseInt(response.statusCode)}`,
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
