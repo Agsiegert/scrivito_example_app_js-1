@@ -8,17 +8,10 @@ Scrivito.provideEditingConfig("MailchimpSignUpWidget", {
       title: "text for submit button",
     },
   },
-  properties: [ "buttonText" ],
-  propertiesGroups: [
-    {
-      title: "Success Message",
-      component: "SuccessMessageTab",
-    },
-  ],
+  properties: [ "buttonText", "successMessage" ],
   initialContent: {
     buttonText: "Sign me up",
-    successMessage: [
-      new HeadlineWidget({ headline: "Thank you for signing up!" }),
+    successMessage: "Thank you for signing up!",
     ],
   },
 });
