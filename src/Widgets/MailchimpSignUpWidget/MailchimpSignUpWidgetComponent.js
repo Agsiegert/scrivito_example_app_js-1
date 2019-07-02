@@ -58,7 +58,7 @@ class MailchimpSignUpWidget extends React.Component {
   renderForm() {
     const widget = this.props.widget;
     const { success, loading, error, errorMsg } = this.state
-    const buttonText = (loading) ? "..." : widget.get("buttonText")
+    const buttonText = (loading) ? "..." : (error) ? errorMsg : widget.get("buttonText")
     const handler = (loading) ? loadNote : this.handleSubmit
     const btnColor = (error) ? "warning" : "primary"
     const err = (error)
