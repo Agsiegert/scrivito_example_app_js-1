@@ -46,7 +46,7 @@ class MailchimpSignUpWidget extends React.Component {
         loading: false
       })
     }).catch((e) => {
-      console.log(e);
+      console.log(e.reponse);
       this.setState({
         errorMsg: JSON.stringify(e.response.data.errorMessage),
         error: true,
@@ -70,6 +70,7 @@ class MailchimpSignUpWidget extends React.Component {
     if (success) {
       return (
         <Scrivito.ContentTag
+        tag="h2"
         content={widget}
         attribute="successMessage"
       />
