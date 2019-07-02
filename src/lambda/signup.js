@@ -69,7 +69,7 @@ module.exports.handler = (event, context, callback) => {
       })
     } else {
       console.log("Error from mailchimp", bodyObj.detail);
-      callback(bodyObj, null);
+      callback(bodyObj.title, null);
     }
   });
 };
