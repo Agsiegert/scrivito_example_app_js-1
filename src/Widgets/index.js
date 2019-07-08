@@ -34,7 +34,7 @@ import "scrivito-eyecatcher/index.css";
 import "scrivito-undraw";
 import "scrivito-undraw/index.css";
 import "scrivito-eventbrite";
-import "scrivito-mailchimp-lambda-widget";
+import "scrivito-mailchimp-widget";
 
 function importAll(r) {
   r.keys().forEach(r);

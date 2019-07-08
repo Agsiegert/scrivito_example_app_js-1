@@ -77,7 +77,7 @@
     "scrivito-highlight-code": "^1.0.5",
     "scrivito-jw-video-player": "^1.0.1",
     "scrivito-linechart": "^1.0.2",
-    "scrivito-mailchimp-lambda-widget": "^2.3.0",
+    "scrivito-mailchimp-widget": "^1.0.0",
     "scrivito-news-api": "^1.0.3",
     "scrivito-picks": "^1.0.4",
     "scrivito-piechart": "^1.0.1",
