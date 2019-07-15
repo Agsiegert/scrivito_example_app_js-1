@@ -1,5 +1,3 @@
-// import "scrivito-collapsible-card";
-// import "scrivito-collapsible-card/index.css";
 import "scrivito-areachart";
 import "scrivito-adv-button";
 import "scrivito-adv-button/index.css";
