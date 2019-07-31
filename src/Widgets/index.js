@@ -1,3 +1,5 @@
+import "scrivito-salesforce-widget";
+
 function importAll(r) {
   r.keys().forEach(r);
 }
