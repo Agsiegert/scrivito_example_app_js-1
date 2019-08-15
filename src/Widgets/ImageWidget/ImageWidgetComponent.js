@@ -39,5 +39,5 @@ function alternativeText(widget) {
     return image.get("alternativeText");
   }
 
-  return "";
+  return "img";
 }
