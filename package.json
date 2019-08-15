@@ -61,6 +61,7 @@
     "react-helmet": "^5.2.1",
     "react-highlight-words": "^0.16.0",
     "react-images": "^0.5.19",
+    "react-on-screen": "^2.1.1",
     "react-reveal": "^1.2.2",
     "react-scroll": "^1.7.13",
     "react-slick": "^0.25.2",
