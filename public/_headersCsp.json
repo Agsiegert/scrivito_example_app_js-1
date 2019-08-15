@@ -6,13 +6,11 @@
     "https:",
     "wss:",
     "'self'",
-    "https://d33wubrfki0l68.cloudfront.net/",
     "https://assets.scrivito.com/",
-    "unsafe-inline"
+    "'unsafe-inline'"
   ],
   "script-src": [
     "'self'",
-    "https://d33wubrfki0l68.cloudfront.net/",
     "https://api.scrivito.com",
     "https://app.intercom.io",
     "https://assets.scrivito.com",
