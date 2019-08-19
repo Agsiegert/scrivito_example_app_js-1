@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
+import { firstChildObj } from "../../models/ObjHierarchy";
 
 class BaseNavChild extends React.Component {
   constructor(props) {
@@ -84,7 +85,7 @@ const Dropdown = Scrivito.connect(
     return (
       <li className={classNames.join(" ")} {...otherProps}>
         <Scrivito.LinkTag
-          to={child}
+          to={firstChildObj(child)}
           className="nav-link"
           role="button"
           aria-haspopup="true"
@@ -104,7 +105,18 @@ const Dropdown = Scrivito.connect(
         <Scrivito.ChildListTag
           className="dropdown-menu"
           parent={child}
-          renderChild={innerChild => <NavSingleChild child={innerChild} />}
+          renderChild={innerChild => (
+          <div>
+            <Scrivito.LinkTag
+              to={innerChild}
+              className={`dropdown-item ${
+                isActive(innerChild) ? "active" : ""
+              }`}
+            >
+              {innerChild.get("title") || "<untitled>"}
+            </Scrivito.LinkTag>
+          </div>
+        )}
         />
       </li>
     );
