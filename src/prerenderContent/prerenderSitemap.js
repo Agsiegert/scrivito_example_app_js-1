@@ -1,6 +1,6 @@
 /* eslint no-console: "off" */
 import * as Scrivito from "scrivito";
-import xml from "xml";
+import jsontoxml from "jsontoxml";
 import formatDate from "../utils/formatDate";
 
 export default async function prerenderSitemap(
@@ -8,41 +8,46 @@ export default async function prerenderSitemap(
   storeResult
 ) {
   console.time("[prerenderSitemap]");
-  const { content, itemsCount } = await Scrivito.load(() =>
-    sitemapXml(objClassesWhitelist)
+
+  const pages = await Scrivito.load(() =>
+    prerenderSitemapSearch(objClassesWhitelist).take()
   );
+  const sitemapUrls = await Scrivito.load(() => pages.map(pageToSitemapUrl));
+  const content = sitemapUrlsToSitemapXml(sitemapUrls);
+
   console.log(
-    `[prerenderSitemap] Generated sitemap.xml with ${itemsCount} items.`
+    `[prerenderSitemap] Generated sitemap.xml with ${sitemapUrls.length} items.`
   );
   console.timeEnd("[prerenderSitemap]");
   await storeResult({ filename: "/sitemap.xml", content });
 }
 
-function sitemapXml(objClassesWhitelist) {
-  const pages = Scrivito.Obj.where("_objClass", "equals", objClassesWhitelist)
-    .andNot("robotsIndex", "equals", "no")
-    .take();
-  const sitemapUrls = pages.map(pageToSitemapUrl);
-
-  const content = xml(
-    {
-      urlset: [
-        { _attr: { xmlns: "http://www.sitemaps.org/schemas/sitemap/0.9" } },
-        ...sitemapUrls,
-      ],
-    },
-    { declaration: true }
+function prerenderSitemapSearch(objClassesWhitelist) {
+  return Scrivito.Obj.where("_objClass", "equals", objClassesWhitelist).andNot(
+    "robotsIndex",
+    "equals",
+    "no"
   );
-
-  const itemsCount = sitemapUrls.length;
-  return { content, itemsCount };
 }
 
 function pageToSitemapUrl(page) {
   return {
-    url: [
-      { loc: Scrivito.urlFor(page) },
-      { lastmod: formatDate(page.lastChanged(), "yyyy-mm-dd") },
-    ],
+    url: {
+      loc: Scrivito.urlFor(page),
+      lastmod: formatDate(page.lastChanged(), "yyyy-mm-dd"),
+    },
   };
+}
+
+function sitemapUrlsToSitemapXml(sitemapUrls) {
+  return jsontoxml(
+    [
+      {
+        name: "urlset",
+        attrs: { xmlns: "http://www.sitemaps.org/schemas/sitemap/0.9" },
+        children: sitemapUrls,
+      },
+    ],
+    { xmlHeader: true }
+  );
 }

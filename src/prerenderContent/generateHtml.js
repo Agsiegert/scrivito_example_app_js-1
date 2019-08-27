@@ -20,9 +20,7 @@ export default function generateHtml({
 
   </head>
   <body ${bodyAttributes}>
-    <div id="application" data-scrivito-prerendering-obj-id="${objId}">
-      ${bodyContent}
-    </div>
+    <div id="application" data-scrivito-prerendering-obj-id="${objId}">${bodyContent}</div>
     <script src="${preloadDumpFileName}"></script>
     <script async src="/index.js"></script>
   </body>

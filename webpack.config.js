@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const path = require("path");
 const process = require("process");
 const webpack = require("webpack");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
@@ -65,9 +65,8 @@ function webpackConfig(env = {}) {
                       modules: false,
                       shippedProposals: true,
                       useBuiltIns: "usage",
-                      targets: {
-                        browsers: ["Chrome >= 41", "last 2 versions"],
-                      },
+                      corejs: "3",
+                      targets: { browsers: ["defaults"] },
                     },
                   ],
                 ],
@@ -85,9 +84,7 @@ function webpackConfig(env = {}) {
         {
           test: /\.s?css$/,
           use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-            },
+            { loader: MiniCssExtractPlugin.loader },
             "css-loader",
             "sass-loader",
           ],
@@ -109,6 +106,7 @@ function webpackConfig(env = {}) {
       minimizer: [
         new TerserPlugin({
           cache: true,
+          extractComments: true,
           parallel: true,
           terserOptions: { ecma: 5 },
         }),
@@ -123,6 +121,7 @@ function webpackConfig(env = {}) {
     resolve: {
       extensions: [".js"],
       modules: ["node_modules"],
+      symlinks: false,
     },
     devServer: {
       port: 8080,
@@ -147,7 +146,6 @@ function generateEntry({ isPrerendering }) {
     index: "./index.js",
     google_analytics: "./google_analytics.js",
     scrivito_extensions: "./scrivito_extensions.js",
-    "index.css": "./assets/stylesheets/index.scss",
   };
   if (isPrerendering) {
     entry.prerender_content = "./prerender_content.js";
@@ -177,13 +175,13 @@ function generatePlugins({ isProduction, isPrerendering, scrivitoOrigin }) {
     ]),
     new ExtendCspHeadersWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: "[name]",
+      filename: "[name].css",
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
   ];
 
   if (isProduction) {
-    plugins.unshift(new CleanWebpackPlugin([buildPath], { verbose: false }));
+    plugins.unshift(new CleanWebpackPlugin());
     plugins.push(
       new ZipPlugin({
         filename: "build.zip",

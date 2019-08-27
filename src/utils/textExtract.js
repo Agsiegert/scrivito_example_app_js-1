@@ -61,7 +61,6 @@ function assertValidValue(value, type) {
     case "widgetlist":
       return Array.isArray(value);
   }
-
   return true;
 }
 

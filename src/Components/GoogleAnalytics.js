@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import Helmet from "react-helmet";
+import cookieConsentGiven from "../utils/cookieConsentGiven";
 
 class GoogleAnalytics extends React.Component {
   constructor(props) {
@@ -13,18 +14,18 @@ class GoogleAnalytics extends React.Component {
     Scrivito.load(() => {
       const rootPage = Scrivito.Obj.root();
       if (!rootPage) {
-        return;
+        return undefined;
       }
       return rootPage.get("googleAnalyticsTrackingId");
     }).then(trackingId => {
-      if (trackingId) {
+      if (trackingId && cookieConsentGiven()) {
         Scrivito.finishLoading().then(() => {
           window.ga =
             window.ga ||
             function() {
-              (ga.q = ga.q || []).push(arguments);
+              (window.ga.q = window.ga.q || []).push(arguments);
             };
-          ga.l = +new Date();
+          window.ga.l = +new Date();
           window.ga("create", trackingId, "auto");
           window.ga("set", "anonymizeIp", true);
           window.ga("require", "urlChangeTracker");
@@ -37,7 +38,7 @@ class GoogleAnalytics extends React.Component {
   }
 
   render() {
-    if (!this.state.trackingId) {
+    if (!this.state.trackingId || !cookieConsentGiven()) {
       return null;
     }
 
