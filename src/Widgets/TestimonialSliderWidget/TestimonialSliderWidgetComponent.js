@@ -45,7 +45,7 @@ function sliderSettings(testimonials) {
     const authorImage = testimonial.get("authorImage");
     if (!isImage(authorImage)) {
       return (
-        <img alt="fallback-img" className="image" src={fallbackImageUrl} />
+        <img alt="" className="image" src={fallbackImageUrl} />
       );
     }
 
