@@ -86,6 +86,7 @@
     "es-check": "npm run build && es-check es5 './build/**/*.js'"
   },
   "devDependencies": {
-    "optimize-css-assets-webpack-plugin": "^5.0.3"
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "webpack-fix-style-only-entries": "^0.3.1"
   }
 }

@@ -7,6 +7,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const TerserPlugin = require("terser-webpack-plugin");
 const Webpackbar = require("webpackbar");
 const ZipPlugin = require("zip-webpack-plugin");
@@ -180,6 +181,8 @@ function generatePlugins({ isProduction, isPrerendering, scrivitoOrigin }) {
       filename: "[name].css",
       chunkFilename: '[id].css',
     }),
+    new FixStyleOnlyEntriesPlugin(),
+    new OptimizeCSSAssetsPlugin({}),
     new webpack.optimize.ModuleConcatenationPlugin(),
   ];
 
