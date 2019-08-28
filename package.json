@@ -84,5 +84,8 @@
     "start": "webpack-dev-server --open",
     "eslint": "eslint --max-warnings 0 src/ prerender/",
     "es-check": "npm run build && es-check es5 './build/**/*.js'"
+  },
+  "devDependencies": {
+    "optimize-css-assets-webpack-plugin": "^5.0.3"
   }
 }
