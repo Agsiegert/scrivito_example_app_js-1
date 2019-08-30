@@ -16,6 +16,8 @@ export default function generateHtml({
     ${headContent}
     <link rel="preconnect" href="https://api.scrivito.com" crossorigin />
     <link rel="preconnect" href="https://api.scrivito.com" />
+    <link rel="preload" href="/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/index.css"></noscript>
     <style type="text/css">
       .divider-widget {
           clear: both;
@@ -780,7 +782,6 @@ export default function generateHtml({
   <body ${bodyAttributes}>
     <div id="application" data-scrivito-prerendering-obj-id="${objId}">${bodyContent}</div>
     <script src="${preloadDumpFileName}"></script>
-    <script async src="/index.js"></script>
   </body>
 </html>
 `;
