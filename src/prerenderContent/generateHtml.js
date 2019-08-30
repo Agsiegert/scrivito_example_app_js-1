@@ -16,9 +16,6 @@ export default function generateHtml({
     ${headContent}
     <link rel="preconnect" href="https://api.scrivito.com" crossorigin />
     <link rel="preconnect" href="https://api.scrivito.com" />
-    <link rel="stylesheet" href="/index.css" />
-    <link rel="preload" href="/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/index.css"></noscript>
     <style type="text/css">
       .divider-widget {
           clear: both;
