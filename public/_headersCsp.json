@@ -13,7 +13,8 @@
     "https://assets.scrivito.com",
     "https://js.intercomcdn.com",
     "https://widget.intercom.io",
-    "https://www.google-analytics.com"
+    "https://www.google-analytics.com",
+    "'unsafe-inline'"
   ],
   "object-src": "'none'",
   "block-all-mixed-content": true
