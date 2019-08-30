@@ -18,6 +18,7 @@ export default function generateHtml({
     <link rel="preconnect" href="https://api.scrivito.com" />
     <link rel="preload" href="/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/index.css"></noscript>
+    <script defer src="/index.js"></script>
     <style type="text/css">
       .divider-widget {
           clear: both;
