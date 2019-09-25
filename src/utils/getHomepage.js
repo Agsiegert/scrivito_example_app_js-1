@@ -7,15 +7,11 @@ function getHomepage() {
    path = currentPage.path();
  }
  if (!path) {
-   path = language;
+   path = currentPage.get("language") || language;
  }
  if (path.startsWith('/lang/')) {
    language = path.substr(0, 8);
  }
- // console.log('path: ' + path);
- // console.log('language: ' + language);
- // console.log('currentPage: ' + currentPage);
- 
  return Scrivito.Obj.getByPath(language);
 }
 export default getHomepage;

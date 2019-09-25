@@ -2,6 +2,10 @@ import HeadlineWidget from "../Widgets/HeadlineWidget/HeadlineWidgetClass";
 import SectionWidget from "../Widgets/SectionWidget/SectionWidgetClass";
 
 export const defaultPageEditingConfigAttributes = {
+  language: {
+    title: "Language",
+    values: [{ value: "/lang/en", title: "English" }, { value: "/lang/de", title: "Deutsch" }],
+  },
   title: {
     title: "Title",
     description: "Limit to 55 characters.",
@@ -37,6 +41,7 @@ export const defaultPageInitialContent = {
 };
 
 export const defaultPageProperties = [
+  "language",
   "title",
   "navigationHeight",
   "navigationBackgroundImage",

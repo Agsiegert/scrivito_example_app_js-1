@@ -7,8 +7,6 @@ import LanguageSwitch from './Navigation/LanguageSwitch';
 function Footer() {
   const root = getHomepage();
 
-  console.log('footer', root);
-
   if (!root) {
     return null;
   }

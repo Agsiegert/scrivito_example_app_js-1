@@ -1,5 +1,6 @@
 const defaultPageAttributes = {
   body: ["widgetlist", { only: "SectionWidget" }],
+  language: ["enum", { values: ["/lang/de", "/lang/en"] }],
   navigationBackgroundImage: [
     "reference",
     { only: ["Image", "Video", "Download"] },
