@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
+import getHomepage from '../../utils/getHomepage.js';
 
 function logoObj({ scrolled, navigationStyle }) {
   let logoVersion;
@@ -11,7 +12,7 @@ function logoObj({ scrolled, navigationStyle }) {
     logoVersion = "logoDark";
   }
 
-  const root = Scrivito.Obj.root();
+  const root = getHomepage();
   if (root) {
     return root.get(logoVersion);
   }
@@ -20,14 +21,14 @@ function logoObj({ scrolled, navigationStyle }) {
 }
 
 function Logo({ scrolled, navigationStyle }) {
-  if (!Scrivito.Obj.root()) {
+  if (!getHomepage()) {
     return null;
   }
 
   const logo = logoObj({ scrolled, navigationStyle });
 
   return (
-    <Scrivito.LinkTag to={Scrivito.Obj.root()} className="navbar-brand">
+    <Scrivito.LinkTag to={getHomepage()} className="navbar-brand">
       <Scrivito.ImageTag content={logo} alt="Logo" />
     </Scrivito.LinkTag>
   );

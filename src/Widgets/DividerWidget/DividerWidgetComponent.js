@@ -5,7 +5,7 @@ import "./DividerWidget.scss";
 
 Scrivito.provideComponent("DividerWidget", ({ widget }) => {
   const showLogo = widget.get("showLogo") !== "no";
-  const root = Scrivito.Obj.root();
+  const root = Scrivito.Obj.getByPath('/lang/en');
 
   if (showLogo && root) {
     return (

@@ -1,9 +1,7 @@
-import * as Scrivito from "scrivito";
+import * as Scrivito from 'scrivito';
+import getHomepage from '../utils/getHomepage.js';
 
-const config = { tenant: process.env.SCRIVITO_TENANT };
-
-if (process.env.SCRIVITO_ORIGIN) {
-  config.origin = process.env.SCRIVITO_ORIGIN;
-}
-
-Scrivito.configure(config);
+Scrivito.configure({
+ homepage: () => getHomepage() || Scrivito.Obj.getByPath('/lang/en'),
+ tenant: process.env.SCRIVITO_TENANT,
+});

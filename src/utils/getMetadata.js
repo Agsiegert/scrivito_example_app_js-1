@@ -23,7 +23,7 @@ function getMetadata(page) {
     meta.push({ name: "description", content: description });
   }
 
-  const root = Scrivito.Obj.root();
+  const root = Scrivito.Obj.getByPath('/lang/en');
   if (root) {
     const facebookAppId = root.get("facebookAppId");
     if (facebookAppId) {

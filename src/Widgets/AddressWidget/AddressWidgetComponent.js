@@ -22,7 +22,7 @@ Scrivito.provideComponent("AddressWidget", ({ widget }) => {
 });
 
 const Logo = Scrivito.connect(() => {
-  const root = Scrivito.Obj.root();
+  const root = Scrivito.Obj.getByPath('/lang/en');
   if (!root) {
     return null;
   }
