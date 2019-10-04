@@ -25,4 +25,15 @@ Scrivito.provideEditingConfig("Page", {
     ...defaultPageInitialContent,
     ...metadataInitialContent,
   },
+  validations: [
+    [
+      "metaDataDescription",
+
+      (metaDataDescription, { obj }) => {
+        if (!metaDataDescription || metaDataDescription === obj.get("title")) {
+          return "The page description must be present and not equal to the title.";
+        }
+      },
+    ],
+  ],
 });

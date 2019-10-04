@@ -19,4 +19,18 @@ Scrivito.provideEditingConfig("ColumnContainerWidget", {
     ],
     alignment: "start",
   },
+  validations: [
+      widget => {
+        const columns = widget.get("columns");
+        for (var i = 0; i < columns.length; ++i) {
+          const column = columns[i].get("content");
+          if (!column || !column.length) {
+            return {
+              message: "Columns should not be left empty.",
+              severity: "info",
+            };
+          }
+        }
+      },
+    ],
 });
