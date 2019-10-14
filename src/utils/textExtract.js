@@ -2,7 +2,7 @@ import isString from "./isString";
 import { lookupTextExtract } from "./textExtractRegistry";
 import textExtractFromHtml from "./textExtractFromHtml";
 
-export function textExtractFromObj(obj) {
+function textExtractFromObj(obj) {
   return textExtractFromItem(obj);
 }
 
@@ -60,9 +60,9 @@ function assertValidValue(value, type) {
       return isString(value);
     case "widgetlist":
       return Array.isArray(value);
-    default:
-      return true;
   }
+
+  return true;
 }
 
 function textExtractFromMetadata(objOrWidget, attribute) {
@@ -79,3 +79,5 @@ function arrayToString(array) {
     .filter(value => value)
     .join("\n");
 }
+
+export { textExtractFromObj, textExtractFromWidgetlist };
