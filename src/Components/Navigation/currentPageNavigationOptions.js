@@ -4,6 +4,8 @@ import isVideoObj from "../../utils/isVideoObj";
 function currentPageNavigationOptions() {
   if (Scrivito.currentPage()) {
     switch (Scrivito.currentPage().objClass()) {
+      case "ArticlePage":
+        return landingPageNavigationOptions(Scrivito.currentPage());
       case "Blog":
         return blogNavigationOptions(Scrivito.currentPage());
       case "BlogPost":

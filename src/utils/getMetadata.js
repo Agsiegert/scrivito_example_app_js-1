@@ -18,7 +18,8 @@ function getMetadata(page) {
     meta.push({ name: "robots", content: "noindex" });
   }
 
-  const description = page.get("metaDataDescription");
+  const description = page.get("metaDataDescription") ||
+    truncate(textExtract, { length: 147, separator: /,? +/ });
   if (description) {
     meta.push({ name: "description", content: description });
   }
