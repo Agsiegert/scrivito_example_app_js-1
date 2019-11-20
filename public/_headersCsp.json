@@ -9,6 +9,7 @@
   ],
   "script-src": [
     "'self'",
+    "https://tagmanager.google.com/",
     "https://www.googletagmanager.com/",
     "https://*.cloudfront.net/",
     "https://api.scrivito.com",
