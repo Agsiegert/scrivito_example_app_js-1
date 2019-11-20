@@ -9,6 +9,7 @@
   ],
   "script-src": [
     "'self'",
+    "https://www.googletagmanager.com/",
     "https://*.cloudfront.net/",
     "https://api.scrivito.com",
     "https://app.intercom.io",
