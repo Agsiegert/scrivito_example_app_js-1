@@ -9,6 +9,7 @@ export default function generateHtml({
   return `<!DOCTYPE html>
 <html ${htmlAttributes}>
   <head>
+    <script src="/js_snippets_head.js"></script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,6 +22,10 @@ export default function generateHtml({
 
   </head>
   <body ${bodyAttributes}>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSM6L25"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <div id="application" data-scrivito-prerendering-obj-id="${objId}">${bodyContent}</div>
     <script src="${preloadDumpFileName}"></script>
     <script async src="/index.js"></script>

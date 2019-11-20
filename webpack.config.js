@@ -10,6 +10,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const Webpackbar = require("webpackbar");
 const ZipPlugin = require("zip-webpack-plugin");
 const headersCsp = require("./public/_headersCsp.json");
+const CompressionPlugin = require('compression-webpack-plugin');
 
 // load ".env"
 dotenv.config();
@@ -187,6 +188,15 @@ function generatePlugins({ isProduction, isPrerendering, scrivitoOrigin }) {
         pathPrefix: "build/",
       })
     );
+    plugins.push(
+      new CompressionPlugin({
+        filename: '[path].gz[query]',
+        algorithm: 'gzip',
+        test: /\.(js|css|html|svg)$/,
+        threshold: 8192,
+        minRatio: 0.8
+      })
+   );
   } else {
     plugins.push(new webpack.SourceMapDevToolPlugin({}));
   }
