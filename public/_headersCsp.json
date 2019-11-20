@@ -4,10 +4,12 @@
   "style-src": [
     "'self'",
     "https://assets.scrivito.com/",
+    "https://*.cloudfront.net/",
     "'unsafe-inline'"
   ],
   "script-src": [
     "'self'",
+    "https://*.cloudfront.net/",
     "https://api.scrivito.com",
     "https://app.intercom.io",
     "https://assets.scrivito.com",
