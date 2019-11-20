@@ -87,6 +87,7 @@
     "es-check": "npm run build && es-check es5 './build/**/*.js'"
   },
   "devDependencies": {
+    "brotli-webpack-plugin": "^1.1.0",
     "compression-webpack-plugin": "^3.0.0"
   }
 }

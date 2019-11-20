@@ -11,6 +11,7 @@ const Webpackbar = require("webpackbar");
 const ZipPlugin = require("zip-webpack-plugin");
 const headersCsp = require("./public/_headersCsp.json");
 const CompressionPlugin = require('compression-webpack-plugin');
+const BrotliPlugin = require('brotli-webpack-plugin');
 
 // load ".env"
 dotenv.config();
@@ -196,7 +197,15 @@ function generatePlugins({ isProduction, isPrerendering, scrivitoOrigin }) {
         threshold: 8192,
         minRatio: 0.8
       })
-   );
+    );
+    plugins.push(
+      new BrotliPlugin({
+        asset: '[path].br[query]',
+        test: /\.(js|css|html|svg)$/,
+        threshold: 10240,
+        minRatio: 0.8
+      })
+    );
   } else {
     plugins.push(new webpack.SourceMapDevToolPlugin({}));
   }
