@@ -5,6 +5,8 @@
     "'self'",
     "https://assets.scrivito.com/",
     "https://*.cloudfront.net/",
+    "https://tagmanager.google.com/",
+    "https://fonts.googleapis.com",
     "'unsafe-inline'"
   ],
   "script-src": [
