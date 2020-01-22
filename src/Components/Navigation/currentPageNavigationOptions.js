@@ -88,7 +88,7 @@ function pageNavigationOptions(obj) {
 
   let navigationStyle = "solidWhite";
   if (backgroundImage || navigationHeight !== "small") {
-    navigationStyle = "transparentDark";
+    navigationStyle = "transparent";
   }
 
   return {

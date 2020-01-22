@@ -11,9 +11,6 @@ Scrivito.provideComponent("SectionWidget", ({ widget }) => {
   if (backgroundImage) {
     backgroundColor = "dark-image";
     sectionStyle.background = [
-      {
-        image: "linear-gradient(rgba(46, 53, 60, 0.7), rgba(46, 53, 60, 0.7))",
-      },
       { image: backgroundImage },
     ];
   }

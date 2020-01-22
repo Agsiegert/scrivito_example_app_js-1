@@ -60,6 +60,7 @@ function defaultFilters() {
           query: Scrivito.Obj.all(),
           selected: true,
         },
+        Product: filterOptionsForObjClass("Product"),
         Image: filterOptionsForObjClass("Image"),
         Pages: {
           title: "Pages",
@@ -114,6 +115,7 @@ const FILTER_PRESENTATIONS = {
   Redirect: { title: "Redirects", icon: "link" },
   SearchResults: { title: "Search results", icon: "lens" },
   Video: { title: "Videos", icon: "video" },
+  Product: { title: "Products", icon: "suitcase" },
 };
 
 const PAGES = [
