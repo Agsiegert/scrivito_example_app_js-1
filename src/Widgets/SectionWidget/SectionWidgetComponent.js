@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
 import TrackVisibility from "react-on-screen";
-import { textExtractFromWidgetlist } from "../../utils/textExtract";
 
 Scrivito.provideComponent("SectionWidget", ({ widget }) => {
   const sectionClassNames = [];
@@ -68,7 +67,7 @@ Scrivito.provideComponent("SectionWidget", ({ widget }) => {
     <DeferredVisibility visible={section}>
       <div className={sectionClassName}>
         <p className={contentClassName}>
-          {textExtractFromWidgetlist(widget.get("content"))}
+          {/* {Scrivito.extractText(widget.get("content"))} */}
         </p>
       </div>
     </DeferredVisibility>
