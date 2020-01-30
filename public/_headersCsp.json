@@ -2,15 +2,18 @@
   "base-uri": "'none'",
   "default-src": ["'self'", "data:", "https:", "wss:"],
   "style-src": [
-    "data:",
-    "https:",
-    "wss:",
     "'self'",
     "https://assets.scrivito.com/",
+    "https://*.cloudfront.net/",
+    "https://tagmanager.google.com/",
+    "https://fonts.googleapis.com",
     "'unsafe-inline'"
   ],
   "script-src": [
     "'self'",
+    "https://tagmanager.google.com/",
+    "https://www.googletagmanager.com/",
+    "https://*.cloudfront.net/",
     "https://api.scrivito.com",
     "https://app.intercom.io",
     "https://assets.scrivito.com",

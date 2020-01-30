@@ -13,6 +13,8 @@ const Webpackbar = require("webpackbar");
 const ZipPlugin = require("zip-webpack-plugin");
 const headersCsp = require("./public/_headersCsp.json");
 const ExtendCspHeadersWebpackPlugin = require("./ExtendCspHeadersWebpackPlugin");
+const CompressionPlugin = require('compression-webpack-plugin');
+const BrotliPlugin = require('brotli-webpack-plugin');
 
 // load ".env"
 dotenv.config();
@@ -147,7 +149,7 @@ function webpackConfig(env = {}) {
 function generateEntry({ isPrerendering }) {
   const entry = {
     index: "./index.js",
-    google_analytics: "./google_analytics.js",
+    tracking: "./tracking.js",
     scrivito_extensions: "./scrivito_extensions.js",
   };
   if (isPrerendering) {
@@ -157,7 +159,7 @@ function generateEntry({ isPrerendering }) {
 }
 
 function generatePlugins({ isProduction, isPrerendering, scrivitoOrigin }) {
-  const ignorePublicFiles = [];
+  const ignorePublicFiles = ["_headersCsp.json"];
   if (!isPrerendering) {
     ignorePublicFiles.push("_prerender_content.html");
   }
@@ -171,6 +173,13 @@ function generatePlugins({ isProduction, isPrerendering, scrivitoOrigin }) {
     new Webpackbar(),
     new CopyWebpackPlugin([
       { from: "../public", ignore: ignorePublicFiles },
+      {
+        from: "../public/_headers",
+        transform: content => {
+          const csp = builder({ directives: headersCsp });
+          return content.toString().replace(/CSP-DIRECTIVES-PLACEHOLDER/g, csp);
+        },
+      },
       {
         from: "../node_modules/scrivito/scrivito/index.html",
         to: "scrivito/index.html",
@@ -193,6 +202,23 @@ function generatePlugins({ isProduction, isPrerendering, scrivitoOrigin }) {
         filename: "build.zip",
         path: "../",
         pathPrefix: "build/",
+      })
+    );
+    plugins.push(
+      new CompressionPlugin({
+        filename: '[path].gz[query]',
+        algorithm: 'gzip',
+        test: /\.(js|css|html|svg)$/,
+        threshold: 8192,
+        minRatio: 0.8
+      })
+    );
+    plugins.push(
+      new BrotliPlugin({
+        asset: '[path].br[query]',
+        test: /\.(js|css|html|svg)$/,
+        threshold: 10240,
+        minRatio: 0.8
       })
     );
   } else {
