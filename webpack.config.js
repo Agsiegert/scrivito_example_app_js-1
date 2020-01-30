@@ -6,15 +6,13 @@ const webpack = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const TerserPlugin = require("terser-webpack-plugin");
 const Webpackbar = require("webpackbar");
 const ZipPlugin = require("zip-webpack-plugin");
 const headersCsp = require("./public/_headersCsp.json");
-const ExtendCspHeadersWebpackPlugin = require("./ExtendCspHeadersWebpackPlugin");
 const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
+
 
 // load ".env"
 dotenv.config();
@@ -54,7 +52,6 @@ function webpackConfig(env = {}) {
             path.join(__dirname, "src"),
             path.join(__dirname, "node_modules/autotrack"),
             path.join(__dirname, "node_modules/dom-utils"), // sub-dependency of autotrack
-            path.join(__dirname, "node_modules/striptags"),
           ],
           use: [
             {
@@ -73,12 +70,6 @@ function webpackConfig(env = {}) {
                       targets: { browsers: ["defaults"] },
                     },
                   ],
-                ],
-                overrides: [
-                  {
-                    test: ["./node_modules/striptags"],
-                    presets: [["@babel/preset-env", { useBuiltIns: false }]],
-                  },
                 ],
                 cacheDirectory: "tmp/babel-cache",
               },
@@ -107,15 +98,7 @@ function webpackConfig(env = {}) {
       ],
     },
     optimization: {
-      minimizer: [
-        new TerserPlugin({
-          cache: true,
-          extractComments: true,
-          parallel: true,
-          terserOptions: { ecma: 5 },
-        }),
-        new OptimizeCSSAssetsPlugin({}),
-      ],
+      minimizer: [new TerserPlugin({ terserOptions: { ecma: 5 } })],
     },
     output: {
       publicPath: "/",
@@ -185,13 +168,9 @@ function generatePlugins({ isProduction, isPrerendering, scrivitoOrigin }) {
         to: "scrivito/index.html",
       },
     ]),
-    new ExtendCspHeadersWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].css",
-      chunkFilename: '[id].css',
     }),
-    new FixStyleOnlyEntriesPlugin(),
-    new OptimizeCSSAssetsPlugin({}),
     new webpack.optimize.ModuleConcatenationPlugin(),
   ];
 
