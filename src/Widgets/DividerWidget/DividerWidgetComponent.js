@@ -10,7 +10,7 @@ Scrivito.provideComponent("DividerWidget", ({ widget }) => {
   if (showLogo && root) {
     return (
       <div className="divider-widget">
-        <Scrivito.ImageTag content={root.get("dividerLogo")} />
+        <Scrivito.ImageTag alt="divider logo" content={root.get("dividerLogo")} />
       </div>
     );
   }
