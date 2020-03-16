@@ -3,8 +3,11 @@ const dotenv = require("dotenv");
 const path = require("path");
 const process = require("process");
 const webpack = require("webpack");
+const lodash = require("lodash");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ManifestPlugin = require("webpack-manifest-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const Webpackbar = require("webpackbar");
@@ -16,6 +19,12 @@ const BrotliPlugin = require('brotli-webpack-plugin');
 
 // load ".env"
 dotenv.config();
+
+// Extend headersCsp with custom endpoint URL
+const endpoint = process.env.SCRIVITO_ENDPOINT;
+if (endpoint) {
+  headersCsp["script-src"].push(`https://${endpoint}`);
+}
 
 const buildPath = "build";
 
@@ -85,12 +94,12 @@ function webpackConfig(env = {}) {
           ],
         },
         {
-          test: /\.(jpg|png|eot|svg|ttf|woff|woff2|gif|html)$/,
+          test: /\.(jpg|png|eot|svg|ttf|woff|woff2|gif)$/,
           use: [
             {
               loader: "file-loader",
               options: {
-                name: "[name].[hash].[ext]",
+                name: "assets/[name].[contenthash].[ext]",
               },
             },
           ],
@@ -102,7 +111,12 @@ function webpackConfig(env = {}) {
     },
     output: {
       publicPath: "/",
-      filename: "[name].js",
+      filename: chunkData => {
+        return chunkData.chunk.name === "tracking"
+          ? "[name].js"
+          : "assets/[name].[contenthash].js";
+      },
+
       path: path.join(__dirname, buildPath),
     },
     plugins: generatePlugins({ isProduction, isPrerendering, scrivitoOrigin }),
@@ -143,9 +157,6 @@ function generateEntry({ isPrerendering }) {
 
 function generatePlugins({ isProduction, isPrerendering, scrivitoOrigin }) {
   const ignorePublicFiles = ["_headersCsp.json"];
-  if (!isPrerendering) {
-    ignorePublicFiles.push("_prerender_content.html");
-  }
 
   const plugins = [
     new webpack.EnvironmentPlugin({
@@ -169,10 +180,31 @@ function generatePlugins({ isProduction, isPrerendering, scrivitoOrigin }) {
       },
     ]),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
+      filename: "assets/[name].[contenthash].css",
+    }),
+    new HtmlWebpackPlugin({
+      filename: "catch_all_index.html",
+      template: "catch_all_index.html",
+      inject: false,
+    }),
+    new HtmlWebpackPlugin({
+      filename: "_scrivito_extensions.html",
+      template: "_scrivito_extensions.html",
+      inject: false,
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
   ];
+
+  if (isPrerendering) {
+    plugins.push(
+      new HtmlWebpackPlugin({
+        filename: "_prerender_content.html",
+        template: "_prerender_content.html",
+        inject: false,
+      }),
+      new ManifestPlugin({ fileName: "asset-manifest.json" })
+    );
+  }
 
   if (isProduction) {
     plugins.unshift(new CleanWebpackPlugin());
@@ -208,7 +240,7 @@ function generatePlugins({ isProduction, isPrerendering, scrivitoOrigin }) {
 }
 
 function devServerCspHeader() {
-  const directives = Object.assign({}, headersCsp);
+  const directives = lodash.cloneDeep(headersCsp);
 
   // allow 'unsafe-eval' for webpack hot code reloading
   directives["script-src"].push("'unsafe-eval'");

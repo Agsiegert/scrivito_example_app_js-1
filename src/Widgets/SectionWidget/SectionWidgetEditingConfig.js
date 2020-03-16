@@ -22,12 +22,18 @@ Scrivito.provideEditingConfig("SectionWidget", {
     useFullWidth: {
       title: "Use full width?",
       description: "Default: No",
-      values: [{ value: "yes", title: "Yes" }, { value: "no", title: "No" }],
+      values: [
+        { value: "yes", title: "Yes" },
+        { value: "no", title: "No" },
+      ],
     },
     useFullHeight: {
       title: "Use full screen height?",
       description: "Default: No",
-      values: [{ value: "yes", title: "Yes" }, { value: "no", title: "No" }],
+      values: [
+        { value: "yes", title: "Yes" },
+        { value: "no", title: "No" },
+      ],
     },
     parallaxEffect: {
         title: "Use a parallax effect?",
@@ -37,7 +43,10 @@ Scrivito.provideEditingConfig("SectionWidget", {
     showPadding: {
       title: "Show padding?",
       description: "Padding adds space around this section. Default: Yes",
-      values: [{ value: "yes", title: "Yes" }, { value: "no", title: "No" }],
+      values: [
+        { value: "yes", title: "Yes" },
+        { value: "no", title: "No" },
+      ],
     },
     backgroundImage: {
       title: "Background image",
