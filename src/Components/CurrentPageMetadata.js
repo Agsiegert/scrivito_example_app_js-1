@@ -6,7 +6,7 @@ import favicon from "../assets/images/favicon.png";
 
 const CurrentPageMetadata = Scrivito.connect(() => {
   const htmlAttributes = { lang: "en" };
-  let title = "";
+  let title = "Safehome";
   let meta = [];
   const links = [
     {

@@ -35,6 +35,11 @@ Scrivito.provideEditingConfig("SectionWidget", {
         { value: "no", title: "No" },
       ],
     },
+    parallaxEffect: {
+        title: "Use a parallax effect?",
+        description: "Default: No",
+        values: [{ value: "yes", title: "Yes" }, { value: "no", title: "No" }],
+    },
     showPadding: {
       title: "Show padding?",
       description: "Padding adds space around this section. Default: Yes",
@@ -46,18 +51,27 @@ Scrivito.provideEditingConfig("SectionWidget", {
     backgroundImage: {
       title: "Background image",
     },
+    deferVisibility: {
+      description:
+        "Show the section only when it gets close to the visual viewport. Default: Yes",
+      values: [{ value: "yes", title: "Yes" }, { value: "no", title: "No" }],
+    },
   },
   properties: [
     "backgroundColor",
     "backgroundImage",
+    "parallaxEffect",
     "useFullWidth",
     "useFullHeight",
     "showPadding",
+    "deferVisibility",
   ],
   initialContent: {
     backgroundColor: "white",
+    parallaxEffect: "no",
     showPadding: "yes",
     useFullHeight: "no",
     useFullWidth: "no",
+    deferVisibility: "yes",
   },
 });

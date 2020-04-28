@@ -24,7 +24,11 @@ class RedirectComponent extends React.Component {
 
   render() {
     const link =
+<<<<<<< HEAD
       this.props.page.get("link");
+=======
+      this.props.page.get("link")];
+>>>>>>> using scrivito.com example for external redirect.
 
     if (!link) {
       return (

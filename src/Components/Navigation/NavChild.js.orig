@@ -105,6 +105,9 @@ const Dropdown = Scrivito.connect(
         <Scrivito.ChildListTag
           className="dropdown-menu"
           parent={child}
+<<<<<<< HEAD
+          renderChild={(innerChild) => <NavSingleChild child={innerChild} />}
+=======
           renderChild={innerChild => (
           <div>
             <Scrivito.LinkTag
@@ -117,6 +120,7 @@ const Dropdown = Scrivito.connect(
             </Scrivito.LinkTag>
           </div>
         )}
+>>>>>>> 498a0c06c21c236d683b7340122b80a95f26453a
         />
       </li>
     );

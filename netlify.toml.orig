@@ -4,4 +4,8 @@
 
 [build]
   command = "npm run prerender"
+<<<<<<< HEAD
   publish = "buildPrerendered"
+=======
+  publish = "buildPrerender"
+>>>>>>> turn preRendering on

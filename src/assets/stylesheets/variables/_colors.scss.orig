@@ -1,8 +1,8 @@
 /* colors
 ================================================== */
 
-// colors theme Safehome
-$primary: #5198f3 !default;
+// colors theme 01 - Safehome
+$primary: #3598fa !default;
 $secondary: #b1b1b1 !default;
 $theme-grey: #2e353c;
 $theme-greydark: #3d4142;
@@ -11,6 +11,8 @@ $theme-greymiddle: #716f73;
 $theme-greywhite: #fbfbfb;
 
 /*
+<<<<<<< HEAD
+=======
 // colors theme 01 - original
 $primary: #3598fa !default;
 $secondary: #b1b1b1 !default;
@@ -20,6 +22,7 @@ $theme-greylight: #dadada;
 $theme-greymiddle: #716f73;
 $theme-greywhite: #fbfbfb;
 
+>>>>>>> new blue
 // colors theme 02 - green 01
 $primary: #239d60 !default;
 $secondary: #a3de83 !default;
@@ -63,14 +66,16 @@ $theme-greymiddle: #716f73;
 $theme-greywhite: #fbfbfb;
 */
 
+/*
 // colors theme 06 - blue
-$primary: #309ef7 !default;
-$secondary: #b1b1b1 !default;
+$primary: #0960bd !default;
+$secondary: #429ffd !default;
 $theme-grey: #011f3f;
 $theme-greydark: #393e46;
 $theme-greylight: #dadada;
 $theme-greymiddle: #716f73;
 $theme-greywhite: #fbfbfb;
+*/
 
 /*
 // colors theme 07 - yellow
