@@ -24,8 +24,8 @@ Scrivito.provideComponent("ContactFormWidget", ({ widget }) => {
 
   return (
     <div className={classNames.join(" ")}>
-      <form className="row" method="post">
-        <input type="hidden" name="form-name" value="contact" />
+      <form className="row" method="post" action="/success">
+        <input type="hidden" name="form-name" value="contact2" />
         <div className="d-none">
           <label>
             Don’t fill this out: <input name="bot-field" />
