@@ -6,3 +6,4 @@ tmp
 .env
 .DS_Store
 src/.DS_Store
+package-lock.json
