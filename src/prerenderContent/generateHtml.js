@@ -26,6 +26,8 @@ export default async function generateHtml({
     <link rel="preconnect" href="https://cdn0.scrvt.com" />
     <link rel="stylesheet" href="${assets["index.css"]}" />
     <script src="/js_snippets_head.js"></script>
+    <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+
   </head>
   <body ${bodyAttributes}>
     <div id="application" data-scrivito-prerendering-obj-id="${objId}">${bodyContent}</div>
