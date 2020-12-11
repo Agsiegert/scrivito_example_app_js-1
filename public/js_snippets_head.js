@@ -3,4 +3,5 @@
 // Don't forget to whitelist the URLs in the CSP at public/_headersCsp.json.
 
 // Google Analytics and Intercom are already taken care of by the app, so there's no need to add them here.
-type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async
+
+`type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async`
