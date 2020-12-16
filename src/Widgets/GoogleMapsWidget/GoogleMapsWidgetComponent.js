@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as Scrivito from "scrivito";
+import useResizeObserver from "use-resize-observer";
 
 import googleMapsApiKey from "../../utils/googleMapsApiKey";
 import googleMapsImageUrl from "../../utils/googleMapsImageUrl";
@@ -7,129 +8,96 @@ import "./GoogleMapsWidget.scss";
 
 const maxWidth = 640;
 
-class GoogleMapsWidgetComponent extends React.Component {
-  constructor(props) {
-    super(props);
+function GoogleMapsWidgetComponent({ widget }) {
+  const address = widget.get("address") || "Brandenburg Gate, Berlin, Germany";
+  const zoom = widget.get("zoom") || "15";
+  const apiKey = googleMapsApiKey();
+  const mapType = widget.get("mapType") || "static";
 
-    this.state = {
-      elementHeight: 0,
-      elementWidth: 0,
-      height: null,
-      width: null,
-    };
+  const Map = mapType === "static" ? StaticGoogleMap : InteractiveGoogleMap;
 
-    this.outerDivRef = React.createRef();
+  return (
+    <Map address={address} zoom={zoom} apiKey={apiKey}>
+      <Widgets widget={widget} mapType={mapType} />
+    </Map>
+  );
+}
 
-    this.handleResize = this.handleResize.bind(this);
-  }
+function InteractiveGoogleMap({ address, apiKey, zoom, children }) {
+  const url = `https://www.google.com/maps/embed/v1/place?q=${address}&key=${apiKey}&zoom=${zoom}`;
+  return (
+    <div className="google-maps-widget">
+      <iframe
+        title="Interactive Map"
+        frameBorder="0"
+        style={{ border: 0 }}
+        src={url}
+        loading="lazy"
+      />
+      {children}
+    </div>
+  );
+}
 
-  componentDidMount() {
-    this.handleResize();
-    window.addEventListener("resize", this.handleResize);
-  }
+function StaticGoogleMap({ address, apiKey, zoom, children }) {
+  const {
+    ref,
+    width: elementWidth = null,
+    height: elementHeight = null,
+  } = useResizeObserver();
+  const { width, height } = scaleMapSize(elementWidth, elementHeight);
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.handleResize);
-  }
-
-  handleResize() {
-    const elementWidth = this.outerDivRef.current.offsetWidth;
-    const elementHeight = this.outerDivRef.current.offsetHeight;
-
-    if (
-      this.state.elementWidth !== elementWidth ||
-      this.state.elementHeight !== elementHeight
-    ) {
-      let width = elementWidth;
-      let height = elementHeight;
-
-      if (width > maxWidth) {
-        width = maxWidth;
-
-        const factor = elementHeight / elementWidth;
-        height = Math.round(maxWidth * factor);
-      }
-
-      this.setState({
-        elementHeight,
-        elementWidth,
-        height,
-        width,
-      });
-    }
-  }
-
-  render() {
-    const address =
-      this.props.widget.get("address") || "Brandenburg Gate, Berlin, Germany";
-    const zoom = this.props.widget.get("zoom") || "15";
-    const apiKey = googleMapsApiKey();
-    const mapType = this.props.widget.get("mapType") || "static";
-
-    let style = {};
-
-    if (mapType === "static") {
-      style = {
+  return (
+    <div
+      ref={ref}
+      className="google-maps-widget"
+      style={{
         background: "no-repeat center / cover",
-        backgroundImage: `url(${this.googleMapsImageUrl({
+        backgroundImage: `url(${getMapUrl({
+          width,
+          height,
           address,
           apiKey,
           zoom,
         })})`,
-      };
-    }
-
-    return (
-      <div ref={this.outerDivRef} className="google-maps-widget" style={style}>
-        <InteractiveMap
-          address={address}
-          zoom={zoom}
-          apiKey={apiKey}
-          mapType={mapType}
-        />
-        <Widgets widget={this.props.widget} mapType={mapType} />
-      </div>
-    );
-  }
-
-  googleMapsImageUrl({ address, apiKey, zoom }) {
-    if (!this.state.height || !this.state.width) {
-      // wait for the real height/width to not consume to much rate from google.
-      return "";
-    }
-
-    // See all options at https://developers.google.com/maps/documentation/static-maps/intro
-    const params = {
-      size: `${this.state.width}x${this.state.height}`,
-      scale: 2, // with scale 2 google maps allows more pixels.
-      markers: `color:red|${address}`,
-      zoom,
-      ie: "UTF8",
-    };
-
-    if (apiKey) {
-      params.key = apiKey;
-    }
-
-    return googleMapsImageUrl(params);
-  }
+      }}
+    >
+      {children}
+    </div>
+  );
 }
 
-function InteractiveMap({ address, apiKey, zoom, mapType }) {
-  if (mapType !== "interactive") {
-    return null;
+function scaleMapSize(width, height) {
+  if (!width || !height || width <= maxWidth) {
+    return { width, height };
   }
 
-  const url = `https://www.google.com/maps/embed/v1/place?q=${address}&key=${apiKey}&zoom=${zoom}`;
-  return (
-    <iframe
-      title="Interactive Map"
-      frameBorder="0"
-      style={{ border: 0 }}
-      src={url}
-      loading="lazy"
-    />
-  );
+  const factor = height / width;
+  const adjustedHeight = Math.round(maxWidth * factor);
+
+  return { width: maxWidth, height: adjustedHeight };
+}
+
+function getMapUrl({ width, height, address, apiKey, zoom }) {
+  if (!height || !width) {
+    // wait for the real height/width to not consume too much rate from google.
+    return "";
+  }
+
+  // See all options at https://developers.google.com/maps/documentation/static-maps/intro
+  const params = {
+    size: `${width}x${height}`,
+    scale: 2, // with scale 2 google maps allows more pixels.
+    markers: `color:red|${address}`,
+    zoom,
+    ie: "UTF8",
+  };
+
+  if (apiKey) {
+    params.key = apiKey;
+  }
+
+  return googleMapsImageUrl(params);
 }
 
 const Widgets = Scrivito.connect(({ widget, mapType }) => {

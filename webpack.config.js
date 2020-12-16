@@ -7,7 +7,7 @@ const lodash = require("lodash");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ManifestPlugin = require("webpack-manifest-plugin");
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const Webpackbar = require("webpackbar");
@@ -26,8 +26,7 @@ if (endpoint) {
 const buildPath = "build";
 
 function webpackConfig(env = {}) {
-  // see https://github.com/webpack/webpack/issues/2537 for details
-  const isProduction = process.argv.indexOf("-p") !== -1 || env.production;
+  const isProduction = env.production;
   const isPrerendering = process.env.SCRIVITO_PRERENDER;
 
   if (
@@ -110,11 +109,10 @@ function webpackConfig(env = {}) {
     },
     output: {
       publicPath: "/",
-      filename: (chunkData) => {
-        return chunkData.chunk.name === "tracking"
+      filename: (chunkData) =>
+        chunkData.chunk.name === "tracking"
           ? "[name].js"
-          : "assets/[name].[contenthash].js";
-      },
+          : "assets/[name].[contenthash].js",
       chunkFilename: "assets/chunk-[id].[contenthash].js",
       path: path.join(__dirname, buildPath),
     },
@@ -126,14 +124,9 @@ function webpackConfig(env = {}) {
     },
     devServer: {
       port: 8080,
+      open: true,
       stats: "minimal",
-      historyApiFallback: {
-        rewrites: [
-          { from: /^\/scrivito$/, to: "/scrivito/index.html" },
-          { from: /^\/scrivito\//, to: "/scrivito/index.html" },
-          { from: /./, to: "/catch_all_index.html" },
-        ],
-      },
+      historyApiFallback: { index: "/catch_all_index.html" },
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Security-Policy": devServerCspHeader(),
@@ -176,10 +169,6 @@ function generatePlugins({ isProduction, isPrerendering, scrivitoOrigin }) {
               .replace(/CSP-DIRECTIVES-PLACEHOLDER/g, csp);
           },
         },
-        {
-          from: "../node_modules/scrivito/scrivito/index.html",
-          to: "scrivito/index.html",
-        },
       ],
     }),
     new MiniCssExtractPlugin({
@@ -210,7 +199,9 @@ function generatePlugins({ isProduction, isPrerendering, scrivitoOrigin }) {
   }
 
   if (!isProduction || isPrerendering) {
-    plugins.push(new ManifestPlugin({ fileName: "asset-manifest.json" }));
+    plugins.push(
+      new WebpackManifestPlugin({ fileName: "asset-manifest.json" })
+    );
   }
 
   if (isProduction) {
